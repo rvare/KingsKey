@@ -3,6 +3,9 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import java.awt.event.*;
+import java.util.*;
+
 public class SampleUI{
     public static void main(String [] args){       
         SampleUI gui = new SampleUI();
@@ -31,6 +34,22 @@ public class SampleUI{
         firstRow.add(edit);
         firstRow.add(help);
         //firstRow.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        JMenuBar menuBar = new JMenuBar();
+        JMenu fileMenu = new JMenu("File");
+        JMenuItem option1 = new JMenuItem("Option");
+        JMenu editMenu = new JMenu("Edit");
+        JMenuItem option2 = new JMenuItem("Option");
+        JMenu helpMenu = new JMenu("Help");
+        JMenuItem option3 = new JMenuItem("Option");
+        
+        fileMenu.add(option1);
+        menuBar.add(fileMenu);
+        editMenu.add(option2);
+        menuBar.add(editMenu);
+        helpMenu.add(option3);
+        menuBar.add(helpMenu);
+        mainFrame.setJMenuBar(menuBar);
 
         //create a panel to hold the second row of buttons
         JPanel secondRow = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
