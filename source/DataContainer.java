@@ -2,11 +2,11 @@ public class DataContainer {
     private String websiteName;
     private String accountName;
     private String userEmail;
-    private string userPassword;
+    private String userPassword;
 
     public DataContainer() { } // Default constructor; does nothing
 
-    public DataContainer(Stirng[] data) {
+    public DataContainer(String[] data) {
         this.websiteName = data[0];
         this.accountName = data[1];
         this.userEmail = data[2];
@@ -14,20 +14,20 @@ public class DataContainer {
     }
 
     // Setters
-    public setWebsiteName(Stirng websiteName) {
-        this.websiteName = websiteName;
+    public String setWebsiteName(String websiteName) {
+        return this.websiteName = websiteName;
     }
 
-    public setAccountName(String accountName) {
-        this.accountName = accountName;
+    public String setAccountName(String accountName) {
+        return this.accountName = accountName;
     }
 
-    public setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public String setUserEmail(String userEmail) {
+        return this.userEmail = userEmail;
     }
 
-    public setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+    public String setUserPassword(String userPassword) {
+        return this.userPassword = userPassword;
     }
 
     // Getters
@@ -43,7 +43,11 @@ public class DataContainer {
         return this.userEmail;
     }
 
-    public Sting getUserPassword() {
+    public String getUserPassword() {
         return this.userPassword;
+    }
+    
+    public String toString() { // For testing purposes
+        return String.format("%s %s %s %s", websiteName, accountName, userEmail, userPassword);
     }
 }

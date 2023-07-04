@@ -1,16 +1,17 @@
 import java.util.*;
+import java.io.*;
 
 public class Backend {
     private ArrayList<DataContainer> userData;
-    private static boolean exits = false;
+    private static boolean exists = false;
     private static Backend instance = null;
-    private static String dataFilePath = " ";
+    private static String dataFilePath = "../testers/TestData";
 
     private Backend() {
-        
+        userData = new ArrayList<DataContainer>();
     }
 
-    public Backend createInstance() {
+    public static Backend createInstance() {
         if (exists == false) {
             instance = new Backend();
         }
@@ -18,19 +19,50 @@ public class Backend {
         return instance;
     }
 
-    public void gatherUserData {
-
+    public void gatherUserData() {
+        ArrayList<String> lines;
+        ArrayList<String> rawData = new ArrayList<String>();
+        String temp;
+        
+        try {
+            BufferedReader bf = new BufferedReader(new FileReader(dataFilePath));
+            while ((temp = bf.readLine()) != null) {
+                rawData.add(temp);
+            }
+            bf.close();
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+        
+        lines = decryptData(rawData);
+        String[] parsedLine;
+        
+        for (String line : lines) {
+            parsedLine = parseLine(line);
+            userData.add(new DataContainer(parsedLine));
+        }
     }
 
-    private void decryptData() {
-
+    private ArrayList<String> decryptData(ArrayList<String> data) { // Implement decryption algorithm later
+        return data;
     }
 
-    private void encryptData() {
-
+    private ArrayList<String> encryptData() { // Temporary stub
+        return new ArrayList<String>();
     }
 
-    private String[] ParseLine(String unparsedLine) {
-
+    private String[] parseLine(String unparsedLine) {
+        return unparsedLine.split(";");
     }
-}
+    
+    public DataContainer sendData(int index) {
+        return userData.get(index);
+    }
+    
+    public void printData() {
+        for (DataContainer i : userData) {
+            System.out.println(i.toString());
+        }
+    }
+} // End of Backend class
