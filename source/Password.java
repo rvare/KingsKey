@@ -15,7 +15,9 @@ public class Password {
         System.out.println("The generated password is: "+generatedPassword);
         System.out.println("Searching Results Found = :"+dictionary.search(password));
         System.out.println("Searching Results Found = :"+dictionary.search(password2));
-
+        
+        System.out.println("Password Generation");
+        System.out.println(Password.generatePassword());
     }
     
     private static void loadDictionary() throws IOException {
@@ -35,13 +37,13 @@ public class Password {
     }
 
     public static String generatePassword() {
-        String generatedPassword = "placeholder";
+        Calendar cal = Calendar.getInstance();
+        long dateInMillis = cal.getTimeInMillis();
         
-        for(int i = 0; i < 12; i++) {
-
-        }
-
-        return generatedPassword;
+        long randomNum = (long)(Math.pow(10,17) * Math.random());
+        long randomPassword = randomNum * dateInMillis * ((long)cal.hashCode() >>> 2);
+        
+        return Long.toHexString(randomPassword);
     }
 
     public static int calculateBruteForceCrackingTime() {
