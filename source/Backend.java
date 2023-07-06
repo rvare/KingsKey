@@ -20,14 +20,14 @@ public class Backend {
     }
 
     public void gatherUserData() {
-        ArrayList<String> lines;
-        ArrayList<String> rawData = new ArrayList<String>();
+        ArrayList<String> decryptedLines;
+        ArrayList<String> encryptedLines = new ArrayList<String>();
         String temp;
         
         try {
             BufferedReader bf = new BufferedReader(new FileReader(dataFilePath));
             while ((temp = bf.readLine()) != null) {
-                rawData.add(temp);
+                encryptedLines.add(temp);
             }
             bf.close();
         }
@@ -35,10 +35,10 @@ public class Backend {
             ex.printStackTrace();
         }
         
-        lines = decryptData(rawData);
+        decryptedLines = decryptData(encryptedLines);
         String[] parsedLine;
         
-        for (String line : lines) {
+        for (String line : decryptedLines) {
             parsedLine = parseLine(line);
             userData.add(new DataContainer(parsedLine));
         }
