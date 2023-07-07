@@ -35,7 +35,8 @@ public class Backend {
             ex.printStackTrace();
         }
         
-        decryptedLines = decryptData(encryptedLines);
+        //decryptedLines = decryptData(encryptedLines);
+        decryptedLines = encryptedLines;
         String[] parsedLine;
         
         for (String line : decryptedLines) {
@@ -44,8 +45,19 @@ public class Backend {
         }
     }
 
-    private ArrayList<String> decryptData(ArrayList<String> data) { // Implement decryption algorithm later
-        return data;
+    private ArrayList<String> decryptData(final String line) { // Implement decryption algorithm later
+        byte[] rawData = line.getBytes(); // Gets bytes of the string
+        
+        for (int i = 0; i < rawData.length; i++) {
+            rawData[i] -= 1; // Shift the ASCII values to the left by 1
+        }
+        
+        String decryptedData = new String(rawData);
+        String[] arrayOfLines = decryptedData.split("\n"); // Since everything is one big line, create an array
+               
+        ArrayList<String> decryptedLines = new ArrayList<String>(Arrays.asList(arrayOfLines));
+        
+        return decryptedLines;
     }
 
     private ArrayList<String> encryptData() { // Temporary stub
