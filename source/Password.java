@@ -38,10 +38,10 @@ public class Password {
 
     public static String generatePassword() {
         Calendar cal = Calendar.getInstance();
-        long dateInMillis = cal.getTimeInMillis();
+        long dateInMillis = cal.getTimeInMillis(); // Current day in milliseconds will give better randomness
         
         long randomNum = (long)(Math.pow(10,17) * Math.random());
-        long randomPassword = randomNum * dateInMillis * ((long)cal.hashCode() >>> 2);
+        long randomPassword = randomNum * dateInMillis * ((long)cal.hashCode() >>> 2); // Use the hash code othe Calendar object for add randomness
         
         return Long.toHexString(randomPassword);
     }
