@@ -128,7 +128,7 @@ public class UI{
             contentDisplay.add(panel);
         }
     }
-
+    //button listeners
     class NewItemButtonListener implements ActionListener{
         public void actionPerformed(ActionEvent event){
             contentDisplay.removeAll();
