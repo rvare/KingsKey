@@ -39,13 +39,14 @@ public class UI{
         JMenu editMenu = new JMenu("Edit");
         JMenuItem option2 = new JMenuItem("Option");
         JMenu helpMenu = new JMenu("Help");
-        JMenuItem option3 = new JMenuItem("Option");
+        JMenuItem aboutItem = new JMenuItem("About");
+        aboutItem.addActionListener(new AboutMenuListener());
         
         fileMenu.add(option1);
         menuBar.add(fileMenu);
         editMenu.add(option2);
         menuBar.add(editMenu);
-        helpMenu.add(option3);
+        helpMenu.add(aboutItem);
         menuBar.add(helpMenu);
         mainFrame.setJMenuBar(menuBar);
 
@@ -143,6 +144,15 @@ public class UI{
             JScrollPane scrollPane = new JScrollPane(dataTable);
             panel.add(scrollPane);
             contentDisplay.add(panel);
+        }
+    }
+    
+    class AboutMenuListener implements ActionListener {
+        public void actionPerformed(ActionEvent evt) {
+            JFrame aboutFrame = new JFrame();
+            aboutFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //JOptionPane is a shortcut to making dialog frames. Super useful
+            JOptionPane.showMessageDialog(aboutFrame, "Created by:\n rvare and HenryWK7", "About", JOptionPane.PLAIN_MESSAGE);
         }
     }
 }
