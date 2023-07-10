@@ -15,7 +15,7 @@ public class NewItemButtonListener implements ActionListener {
 
     public void createDefaultUI() {
         JPanel panel = new JPanel(new BorderLayout());
-        JTable dataTable = new JTable(UI.getDataObjects(), UI.getColumnNames());
+        JTable dataTable = new JTable(Backend.getDataObjects(), Backend.getColumnNames());
         JScrollPane scrollPane = new JScrollPane(dataTable);
         panel.add(scrollPane);
         UI.getContentDisplayPanel().add(panel);

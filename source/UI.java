@@ -1,20 +1,22 @@
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.ArrayList;
+//import java.io.BufferedReader;
+//import java.io.FileReader;
+//import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class UI{
 
-    static Object [][] data;
-    static final String [] columnNames = {"Site","Email","Username","password"};
+    //static Object [][] data;
+    //static final String [] columnNames = {"Site","Email","Username","password"};
 
     static JFrame mainFrame;
     static JPanel contentDisplay;
     public static void main(String [] args){       
         UI gui = new UI();
-        data = getData();
+        /*special note: the controller class will have to call Backend.getData(); in the future 
+            to populate the 2D array that resides in the Backend class but for now this is a placeholder*/
+        Backend.getData();
         gui.createUI();  
     }
 
@@ -69,7 +71,7 @@ public class UI{
         contentDisplay = new JPanel(new BorderLayout());
         contentDisplay.setBorder(new EmptyBorder(10,10,10,10));
 
-        JTable dataTable = new JTable(data, columnNames);
+        JTable dataTable = new JTable(Backend.getDataObjects(), Backend.getColumnNames());
         JScrollPane scrollPane = new JScrollPane(dataTable);
         contentDisplay.add(scrollPane);
 
@@ -86,7 +88,7 @@ public class UI{
 
     }
     
-    public static Object [][] getData(){
+    /*public static Object [][] getData(){
         try{
             String path = "testers\\TestData";
             BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
@@ -107,17 +109,17 @@ public class UI{
             e.printStackTrace();
             return null;
         }
-    }
+    }*/
     
     public static JPanel getContentDisplayPanel(){
         return contentDisplay;
     }
 
-    public static Object [][] getDataObjects(){
+    /*public static Object [][] getDataObjects(){
         return data;
     }
 
     public static String [] getColumnNames(){
         return columnNames;
-    }
+    }*/
 }
