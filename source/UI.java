@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.ActionListener;
+
 //import java.io.BufferedReader;
 //import java.io.FileReader;
 //import java.util.ArrayList;
@@ -53,14 +55,14 @@ public class UI{
         JPanel firstRow = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
 
         JButton newItemButton = new JButton("New");
-        JButton genPasswordButton = new JButton("Generate Password");
+        JButton passwordGeneratorButton = new JButton("Password Generator");
         JButton copy = new JButton("Copy to Clipboard");
         firstRow.add(newItemButton);
-        firstRow.add(genPasswordButton);
+        firstRow.add(passwordGeneratorButton);
         firstRow.add(copy);
 
         //adding event listeners
-        genPasswordButton.addActionListener(new GenPasswordButtonListener());
+        passwordGeneratorButton.addActionListener(new PasswordGeneratorButtonListener());
         newItemButton.addActionListener(new NewItemButtonListener());
 
         optionsMenu.add(firstRow);
