@@ -120,13 +120,4 @@ public class UI{
     public static String [] getColumnNames(){
         return columnNames;
     }
-    
-    class AboutMenuListener implements ActionListener {
-        public void actionPerformed(ActionEvent evt) {
-            JFrame aboutFrame = new JFrame();
-            aboutFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            //JOptionPane is a shortcut to making dialog frames. Super useful
-            JOptionPane.showMessageDialog(aboutFrame, "Created by:\n rvare and HenryWK7", "About", JOptionPane.PLAIN_MESSAGE);
-        }
-    }
 }
