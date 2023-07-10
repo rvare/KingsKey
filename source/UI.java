@@ -1,10 +1,7 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -13,8 +10,8 @@ public class UI{
     static Object [][] data;
     static final String [] columnNames = {"Site","Email","Username","password"};
 
-    JFrame mainFrame;
-    JPanel contentDisplay;
+    static JFrame mainFrame;
+    static JPanel contentDisplay;
     public static void main(String [] args){       
         UI gui = new UI();
         data = getData();
@@ -110,39 +107,16 @@ public class UI{
             return null;
         }
     }
-
-    class GenPasswordButtonListener implements ActionListener{
-        public void actionPerformed (ActionEvent event){
-            //mainFrame.getContentPane().remove(contentDisplay);
-            contentDisplay.removeAll();
-            createGeneratePasswordUI();
-            contentDisplay.revalidate();
-            contentDisplay.repaint();   
-        }
-        public void createGeneratePasswordUI(){
-            JPanel panel = new JPanel(new FlowLayout());
-            JTextField placeholder = new JTextField("placeholder");
-            JButton generate = new JButton("Generate");
-            panel.add(placeholder);
-            panel.add(generate);
-            contentDisplay.add(panel);
-        }
+    
+    public static JPanel getContentDisplayPanel(){
+        return contentDisplay;
     }
-    //button listeners
-    class NewItemButtonListener implements ActionListener{
-        public void actionPerformed(ActionEvent event){
-            contentDisplay.removeAll();
-            createDefaultUI();
-            contentDisplay.revalidate();
-            contentDisplay.repaint();  
-        }
-        
-        public void createDefaultUI(){
-            JPanel panel = new JPanel(new BorderLayout());
-            JTable dataTable = new JTable(data, columnNames);
-            JScrollPane scrollPane = new JScrollPane(dataTable);
-            panel.add(scrollPane);
-            contentDisplay.add(panel);
-        }
+
+    public static Object [][] getDataObjects(){
+        return data;
+    }
+
+    public static String [] getColumnNames(){
+        return columnNames;
     }
 }
