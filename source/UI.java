@@ -38,14 +38,15 @@ public class UI{
         JMenu fileMenu = new JMenu("File");
         JMenuItem option1 = new JMenuItem("Option");
         JMenu editMenu = new JMenu("Edit");
-        JMenuItem option2 = new JMenuItem("Option");
+        JMenuItem preferencesMenu = new JMenuItem("Preferences"); // Preferences
+        preferencesMenu.addActionListener(new PreferenceMenuListener());
         JMenu helpMenu = new JMenu("Help");
         JMenuItem aboutItem = new JMenuItem("About");
         aboutItem.addActionListener(new AboutMenuListener());
         
         fileMenu.add(option1);
         menuBar.add(fileMenu);
-        editMenu.add(option2);
+        editMenu.add(preferencesMenu);
         menuBar.add(editMenu);
         helpMenu.add(aboutItem);
         menuBar.add(helpMenu);
