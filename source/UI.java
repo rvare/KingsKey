@@ -14,6 +14,7 @@ public class UI{
 
     static JFrame mainFrame;
     static JPanel contentDisplay;
+    static JTable dataTable;
     public static void main(String [] args){       
         UI gui = new UI();
         /*special note: the controller class will have to call Backend.getData(); in the future 
@@ -58,6 +59,7 @@ public class UI{
         JButton newItemButton = new JButton("New");
         JButton passwordGeneratorButton = new JButton("Password Generator");
         JButton copy = new JButton("Copy to Clipboard");
+        copy.addActionListener(new CopyToClipBoardListener());
         firstRow.add(newItemButton);
         firstRow.add(passwordGeneratorButton);
         firstRow.add(copy);
@@ -74,7 +76,7 @@ public class UI{
         contentDisplay = new JPanel(new BorderLayout());
         contentDisplay.setBorder(new EmptyBorder(10,10,10,10));
 
-        JTable dataTable = new JTable(Backend.getDataObjects(), Backend.getColumnNames());
+        dataTable = new JTable(Backend.getDataObjects(), Backend.getColumnNames());
         JScrollPane scrollPane = new JScrollPane(dataTable);
         contentDisplay.add(scrollPane);
 
@@ -116,6 +118,10 @@ public class UI{
     
     public static JPanel getContentDisplayPanel(){
         return contentDisplay;
+    }
+    
+    public static JTable getDataTable() {
+        return dataTable;
     }
 
     /*public static Object [][] getDataObjects(){

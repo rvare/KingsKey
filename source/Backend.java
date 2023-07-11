@@ -91,7 +91,7 @@ public class Backend {
 
     public static void getData() {
         try {
-            String path = "testers\\TestData"; //testers\\TestData
+            String path = "../testers/TestData"; //testers\\TestData
             BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
             ArrayList<String> list = new ArrayList<>();
             String str = "";
