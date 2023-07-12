@@ -50,4 +50,4 @@ public class DataContainer {
     public String toString() { // For testing purposes
         return String.format("%s %s %s %s", websiteName, accountName, userEmail, userPassword);
     }
-}
+} // End of DataContainer class

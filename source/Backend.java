@@ -3,10 +3,8 @@ import java.io.*;
 
 public class Backend {
     private ArrayList<DataContainer> userData;
-    // private static boolean exists = false;
-    // private static Backend instance = null;
     private static String dataFilePath = "../testers/TestData";
-    private static Backend INSTANCE;
+    private static Backend instance;
     private static Object[][] data;
     private static final String[] columnNames = { "Site", "Email", "Username", "password" };
 
@@ -15,21 +13,11 @@ public class Backend {
     }
 
     public static Backend createInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Backend();
+        if (instance == null) {
+            instance = new Backend();
         }
-        return INSTANCE;
+        return instance;
     }
-
-    /*
-     * public static Backend createInstance() {
-     * if (exists == false) {
-     * instance = new Backend();
-     * }
-     * 
-     * return instance;
-     * }
-     */
 
     public void gatherUserData() {
         ArrayList<String> decryptedLines;
@@ -91,7 +79,7 @@ public class Backend {
 
     public static void getData() {
         try {
-            String path = "../testers/TestData"; //testers\\TestData
+            String path = "../testers/TestData"; // testers\\TestData -> May need to use for Windows
             BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
             ArrayList<String> list = new ArrayList<>();
             String str = "";
@@ -111,11 +99,11 @@ public class Backend {
         }
     }
 
-    public static Object [][] getDataObjects(){
+    public static Object [][] getDataObjects() {
         return data;
     }
 
-    public static String [] getColumnNames(){
+    public static String [] getColumnNames() {
         return columnNames;
     }
 } // End of Backend class

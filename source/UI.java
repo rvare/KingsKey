@@ -1,21 +1,14 @@
 import java.awt.*;
 import java.awt.event.ActionListener;
-
-//import java.io.BufferedReader;
-//import java.io.FileReader;
-//import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-public class UI{
-
-    //static Object [][] data;
-    //static final String [] columnNames = {"Site","Email","Username","password"};
+public class UI {
 
     static JFrame mainFrame;
     static JPanel contentDisplay;
     static JTable dataTable;
-    public static void main(String [] args){       
+    public static void main(String [] args) {       
         UI gui = new UI();
         /*special note: the controller class will have to call Backend.getData(); in the future 
             to populate the 2D array that resides in the Backend class but for now this is a placeholder*/
@@ -23,7 +16,7 @@ public class UI{
         gui.createUI();  
     }
 
-    public void createUI(){
+    public void createUI() {
         //create the top level frame that hold everything
         mainFrame = new JFrame();
 
@@ -74,7 +67,7 @@ public class UI{
 
         //creating content display section
         contentDisplay = new JPanel(new BorderLayout());
-        contentDisplay.setBorder(new EmptyBorder(10,10,10,10));
+        contentDisplay.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         dataTable = new JTable(Backend.getDataObjects(), Backend.getColumnNames());
         JScrollPane scrollPane = new JScrollPane(dataTable);
@@ -93,42 +86,11 @@ public class UI{
 
     }
     
-    /*public static Object [][] getData(){
-        try{
-            String path = "testers\\TestData";
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
-            ArrayList<String> list = new ArrayList<>();
-            String str = "";
-            while((str = bufferedReader.readLine()) != null){
-                list.add(str);
-            }
-            int numberOfColumns = list.get(0).split(";").length;
-            Object [][] data = new Object[list.size()][numberOfColumns];
-            for(int i = 0; i < list.size(); i++){
-                data[i] = list.get(i).split(";");
-            }
-            bufferedReader.close();
-            return data;
-
-        } catch(Exception e){
-            e.printStackTrace();
-            return null;
-        }
-    }*/
-    
-    public static JPanel getContentDisplayPanel(){
+    public static JPanel getContentDisplayPanel() {
         return contentDisplay;
     }
     
     public static JTable getDataTable() {
         return dataTable;
     }
-
-    /*public static Object [][] getDataObjects(){
-        return data;
-    }
-
-    public static String [] getColumnNames(){
-        return columnNames;
-    }*/
-}
+} // End of UI class
