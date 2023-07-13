@@ -82,15 +82,22 @@ public class Backend {
             String path = "../testers/TestData"; // testers\\TestData -> May need to use for Windows
             BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
             ArrayList<String> list = new ArrayList<>();
-            String str = "";
+            String str;
+            
+            // Gather data from file
             while ((str = bufferedReader.readLine()) != null) {
                 list.add(str);
             }
+            
+            // Initialize 2D array to hold data for JTable
             int numberOfColumns = list.get(0).split(";").length;
             data = new Object[list.size()][numberOfColumns];
+            
+            // Put data into 2D array
             for (int i = 0; i < list.size(); i++) {
                 data[i] = list.get(i).split(";");
             }
+            
             bufferedReader.close();
             //return data;
         } catch (Exception e) {

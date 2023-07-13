@@ -32,7 +32,6 @@ public class Password {
     }
 
     public static int calculatePasswordStrength(String password) {
-
         return 0;
     }
 
@@ -47,7 +46,6 @@ public class Password {
     }
 
     public static int calculateBruteForceCrackingTime() {
-
         return 0;
     }
 

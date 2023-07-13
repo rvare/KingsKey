@@ -4,7 +4,6 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class UI {
-
     static JFrame mainFrame;
     static JPanel contentDisplay;
     static JTable dataTable;
@@ -21,7 +20,7 @@ public class UI {
         mainFrame = new JFrame();
 
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setSize(1000,600);
+        mainFrame.setSize(1000, 600);
         
         //create the options menu 
         JPanel optionsMenu = new JPanel();
