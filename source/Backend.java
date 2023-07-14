@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class Backend {
     private ArrayList<DataContainer> userData;
@@ -7,6 +8,7 @@ public class Backend {
     private static Backend instance;
     private static Object[][] data;
     private static final String[] columnNames = { "Site", "Email", "Username", "password" };
+    
 
     private Backend() {
         userData = new ArrayList<DataContainer>();
@@ -79,8 +81,13 @@ public class Backend {
 
     public static void getData() {
         try {
-            String path = "../testers/TestData"; // testers\\TestData -> May need to use for Windows
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
+            final ClassLoader cl = Thread.currentThread().getContextClassLoader();
+            InputStream inputStream = cl.getResourceAsStream("TestData");
+            InputStreamReader streamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+            BufferedReader bufferedReader = new BufferedReader(streamReader);
+
+            //String path = "testers/TestData"; // testers\\TestData -> May need to use for Windows
+            //BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
             ArrayList<String> list = new ArrayList<>();
             String str;
             
