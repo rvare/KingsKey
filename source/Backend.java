@@ -86,7 +86,7 @@ public class Backend {
             InputStreamReader streamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
             BufferedReader bufferedReader = new BufferedReader(streamReader);
 
-            //String path = "testers/TestData"; // testers\\TestData -> May need to use for Windows
+            //String path = "../testers/TestData"; // testers\\TestData -> May need to use for Windows
             //BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
             ArrayList<String> list = new ArrayList<>();
             String str;

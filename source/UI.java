@@ -29,17 +29,21 @@ public class UI {
         //creating small menu bar
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
-        JMenuItem option1 = new JMenuItem("Option");
+        JMenuItem newRecordItem = new JMenuItem("New");
+        newRecordItem.addActionListener(new RecordMenuListener());
         JMenu editMenu = new JMenu("Edit");
-        JMenuItem preferencesMenu = new JMenuItem("Preferences"); // Preferences
+        JMenuItem preferencesMenu = new JMenuItem("Preferences");
         preferencesMenu.addActionListener(new PreferenceMenuListener());
+        JMenuItem editRecordItem = new JMenuItem("Edit Record");
+        editRecordItem.addActionListener(new RecordMenuListener());
         JMenu helpMenu = new JMenu("Help");
         JMenuItem aboutItem = new JMenuItem("About");
         aboutItem.addActionListener(new AboutMenuListener());
         
-        fileMenu.add(option1);
+        fileMenu.add(newRecordItem);
         menuBar.add(fileMenu);
         editMenu.add(preferencesMenu);
+        editMenu.add(editRecordItem);
         menuBar.add(editMenu);
         helpMenu.add(aboutItem);
         menuBar.add(helpMenu);
