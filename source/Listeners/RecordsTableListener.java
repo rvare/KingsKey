@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class NewItemButtonListener implements ActionListener {
+public class RecordsTableListener implements ActionListener {
     public void actionPerformed(ActionEvent event) {
         UI.getContentDisplayPanel().removeAll();
         createDefaultUI();

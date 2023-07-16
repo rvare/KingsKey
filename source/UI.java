@@ -52,17 +52,17 @@ public class UI {
         //create a panel to hold the second row of buttons
         JPanel firstRow = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
 
-        JButton newItemButton = new JButton("New");
+        JButton getRecordTableButton = new JButton("Records");
         JButton passwordGeneratorButton = new JButton("Password Generator");
         JButton copy = new JButton("Copy to Clipboard");
         copy.addActionListener(new CopyToClipBoardListener());
-        firstRow.add(newItemButton);
+        firstRow.add(getRecordTableButton);
         firstRow.add(passwordGeneratorButton);
         firstRow.add(copy);
 
         //adding event listeners
         passwordGeneratorButton.addActionListener(new PasswordGeneratorButtonListener());
-        newItemButton.addActionListener(new NewItemButtonListener());
+        getRecordTableButton.addActionListener(new RecordsTableListener());
 
         optionsMenu.add(firstRow);
         JSeparator divider = new JSeparator(SwingConstants.HORIZONTAL);
