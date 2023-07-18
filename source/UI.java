@@ -30,12 +30,12 @@ public class UI {
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem newRecordItem = new JMenuItem("New");
-        newRecordItem.addActionListener(new RecordMenuListener());
+        newRecordItem.addActionListener(new NewRecordMenuListener());
         JMenu editMenu = new JMenu("Edit");
         JMenuItem preferencesMenu = new JMenuItem("Preferences");
         preferencesMenu.addActionListener(new PreferenceMenuListener());
         JMenuItem editRecordItem = new JMenuItem("Edit Record");
-        editRecordItem.addActionListener(new RecordMenuListener());
+        editRecordItem.addActionListener(new EditRecordMenuListener());
         JMenu helpMenu = new JMenu("Help");
         JMenuItem aboutItem = new JMenuItem("About");
         aboutItem.addActionListener(new AboutMenuListener());
