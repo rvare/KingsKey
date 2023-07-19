@@ -1,3 +1,6 @@
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
@@ -28,6 +31,10 @@ class PasswordGeneratorButtonListener implements ActionListener {
             public void actionPerformed(ActionEvent event){
                 String pass = Password.generatePassword();
                 placeholder.setText(pass);
+                //automatically copy to clipboard
+                StringSelection selectedString = new StringSelection(pass);
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                clipboard.setContents(selectedString, null);
             }
         });
         //creating panels for password testing layout
