@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class UI {
     static JFrame mainFrame;
@@ -72,7 +73,8 @@ public class UI {
         contentDisplay = new JPanel(new BorderLayout());
         contentDisplay.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        dataTable = new JTable(Backend.getDataObjects(), Backend.getColumnNames());
+        DefaultTableModel tableModel= new DefaultTableModel(Backend.getDataObjects(), Backend.getColumnNames());
+        dataTable = new JTable(tableModel);
         dataTable.getTableHeader().setReorderingAllowed(false);
         dataTable.setDefaultEditor(Object.class, null);
         JScrollPane scrollPane = new JScrollPane(dataTable);

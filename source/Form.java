@@ -1,7 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
@@ -96,8 +95,17 @@ public class Form extends JFrame {
             row[3] = passwordField.getText();
             
             if (mode.equals("New")) {
-                //DefaultTableModel model = (DefaultTableModel)dataTable.getModel();
-                //model.addRow(row);
+                DefaultTableModel model = (DefaultTableModel) dataTable.getModel();
+                model.addRow(new Object [] {row[0], row[1], row [2], row[3]});
+                //saving changes to backend Object [][] data
+                int nRow = model.getRowCount(), nCol = model.getColumnCount();
+                Object[][] tableData = new Object[nRow][nCol];
+                for (int i = 0 ; i < nRow ; i++) { 
+                    for (int j = 0 ; j < nCol ; j++) {
+                        tableData[i][j] = model.getValueAt(i,j);
+                    }
+                }
+                Backend.updateDatabase(tableData);
             }
             else {
                 dataTable.setValueAt(row[0], currRow, 0);
