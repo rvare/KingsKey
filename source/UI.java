@@ -73,6 +73,8 @@ public class UI {
         contentDisplay.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         dataTable = new JTable(Backend.getDataObjects(), Backend.getColumnNames());
+        dataTable.getTableHeader().setReorderingAllowed(false);
+        dataTable.setDefaultEditor(Object.class, null);
         JScrollPane scrollPane = new JScrollPane(dataTable);
         contentDisplay.add(scrollPane);
 

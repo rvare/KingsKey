@@ -16,6 +16,8 @@ public class RecordsTableListener implements ActionListener {
     public void createDefaultUI() {
         JPanel panel = new JPanel(new BorderLayout());
         JTable dataTable = new JTable(Backend.getDataObjects(), Backend.getColumnNames());
+        dataTable.getTableHeader().setReorderingAllowed(false);
+        dataTable.setDefaultEditor(Object.class, null);
         JScrollPane scrollPane = new JScrollPane(dataTable);
         panel.add(scrollPane);
         UI.getContentDisplayPanel().add(panel);
