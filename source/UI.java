@@ -1,3 +1,5 @@
+import Listeners.*;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -31,12 +33,12 @@ public class UI {
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem newRecordItem = new JMenuItem("New");
-        newRecordItem.addActionListener(new NewRecordMenuListener());
+        newRecordItem.addActionListener(new NewRecordMenuListener(new Form()));
         JMenu editMenu = new JMenu("Edit");
         JMenuItem preferencesMenu = new JMenuItem("Preferences");
         preferencesMenu.addActionListener(new PreferenceMenuListener());
         JMenuItem editRecordItem = new JMenuItem("Edit Record");
-        editRecordItem.addActionListener(new EditRecordMenuListener());
+        editRecordItem.addActionListener(new EditRecordMenuListener(new Form()));
         JMenu helpMenu = new JMenu("Help");
         JMenuItem aboutItem = new JMenuItem("About");
         aboutItem.addActionListener(new AboutMenuListener());
@@ -56,7 +58,7 @@ public class UI {
         JButton getRecordTableButton = new JButton("Records");
         JButton passwordGeneratorButton = new JButton("Password Generator");
         JButton copy = new JButton("Copy to Clipboard");
-        copy.addActionListener(new CopyToClipBoardListener());
+        copy.addActionListener(new CopyToClipBoardListener(dataTable));
         firstRow.add(getRecordTableButton);
         firstRow.add(passwordGeneratorButton);
         firstRow.add(copy);
