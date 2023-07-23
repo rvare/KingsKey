@@ -4,6 +4,8 @@ import Model.Trie.*;
 
 import java.util.*;
 import java.io.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Password {
 
@@ -24,6 +26,8 @@ public class Password {
         System.out.println(Password.generatePassword());
         System.out.println("Checking password strength of:" +password);
         System.out.println(checkPasswordStrength(password));
+        System.out.println("Entropy calculation: ");
+        System.out.println(Password.calculateEntropy(password));
     }
     
     private static void loadDictionary() throws IOException {
@@ -109,5 +113,17 @@ public class Password {
                 result.append("Error. Scoring out of specified ranges.");
         }
         return result.toString();
+    }
+
+    public static double calculateEntropy(String password) {
+        //Formula is Entropy = log2(CharacterSet^Length of Password)
+        double passwordLength = password.length();
+        double base = 2.0;
+        double characterSet = 95.0;
+        double numberOfCombinations = (Math.pow(characterSet, passwordLength));
+        double entropy = (Math.log(numberOfCombinations) / Math.log(base));
+        BigDecimal roundedEntropy = new BigDecimal(Double.toString(entropy));
+        roundedEntropy = roundedEntropy.setScale(2, RoundingMode.HALF_UP);
+        return roundedEntropy.doubleValue();
     }
 }

@@ -3,6 +3,8 @@ package View.Listeners;
 import View.UI.*;
 import Model.*;
 
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
@@ -44,12 +46,18 @@ public class PasswordGeneratorButtonListener implements ActionListener {
         });
         //creating panels for password testing layout
         JPanel resultLabelHolder = new JPanel();
+        resultLabelHolder.setLayout(new BoxLayout(resultLabelHolder, BoxLayout.Y_AXIS));
+        resultLabelHolder.setAlignmentX(Component.LEFT_ALIGNMENT);
         JPanel textBoxAndButtonHolder = new JPanel();
         JPanel passwordTestPanel = new JPanel();
         passwordTestPanel.setLayout(new BoxLayout(passwordTestPanel, BoxLayout.Y_AXIS));
         //panel holds result output label
         JLabel passwordStrengthResults = new JLabel("Password Strength: ?");
+        JLabel passwordEntropyResults = new JLabel("Password Entropy: ?");
+        JLabel hint = new JLabel("Hint: Enter a password. Try to go for at least 60 entropy\n for a decent password.");
         resultLabelHolder.add(passwordStrengthResults);
+        resultLabelHolder.add(passwordEntropyResults);
+        resultLabelHolder.add(hint);
         //panel holds textbox and button
         JTextField textField = new JTextField("Enter Password", 20);
         JButton testPasswordButton = new JButton("Test Password");
@@ -62,6 +70,7 @@ public class PasswordGeneratorButtonListener implements ActionListener {
                 String pass = textField.getText();
                 String result = Password.checkPasswordStrength(pass);
                 passwordStrengthResults.setText(result);
+                passwordEntropyResults.setText("Password Entropy: "+Password.calculateEntropy(pass));
             }
         });
         //adding everything to a parent panel
