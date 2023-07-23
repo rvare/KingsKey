@@ -29,7 +29,7 @@ public class Form extends JFrame {
         gridPanel = new JPanel(new GridLayout(4, 4));
         getContentPane().add(BorderLayout.CENTER, gridPanel);
         
-        dataTable = UI.getDataTable();
+        //dataTable = UI.getDataTable();
         //currRow = dataTable.getRowCount();
         
         setUpLabelsAndFields();
@@ -100,7 +100,7 @@ public class Form extends JFrame {
             row[3] = passwordField.getText();
             
             if (mode.equals("New")) {
-                DefaultTableModel model = (DefaultTableModel) dataTable.getModel();
+                DefaultTableModel model = (DefaultTableModel) UI.getDataTable().getModel();
                 model.addRow(new Object [] {row[0], row[1], row [2], row[3]});
                 //saving changes to backend Object [][] data
                 int nRow = model.getRowCount(), nCol = model.getColumnCount();

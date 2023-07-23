@@ -83,10 +83,10 @@ public class Backend {
 
     public static void getData() {
         try {
-            //final ClassLoader cl = Thread.currentThread().getContextClassLoader();
-            //InputStream inputStream = cl.getResourceAsStream("TestData");
-            //InputStreamReader streamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
-            //BufferedReader bufferedReader = new BufferedReader(streamReader);
+            /*final ClassLoader cl = Thread.currentThread().getContextClassLoader();
+            InputStream inputStream = cl.getResourceAsStream("TestData");
+            InputStreamReader streamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+            BufferedReader bufferedReader = new BufferedReader(streamReader);*/
 
             String path = "../testers/TestData"; // testers\\TestData -> May need to use for Windows
             BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
