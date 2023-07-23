@@ -1,11 +1,11 @@
-package Listeners;
+package View.Listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-class AboutMenuListener implements ActionListener {
+public class AboutMenuListener implements ActionListener {
     public void actionPerformed(ActionEvent evt) {
         JFrame aboutFrame = new JFrame();
         aboutFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

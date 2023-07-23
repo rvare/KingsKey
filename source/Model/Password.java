@@ -1,3 +1,7 @@
+package Model;
+
+import Model.Trie.*;
+
 import java.util.*;
 import java.io.*;
 

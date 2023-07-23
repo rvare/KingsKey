@@ -1,10 +1,12 @@
+package Model;
+
 import java.util.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public class Backend {
     private ArrayList<DataContainer> userData;
-    private static String dataFilePath = "../testers/TestData";
+    private static String dataFilePath = "../../testers/TestData";
     private static Backend instance;
     private static Object[][] data;
     private static final String[] columnNames = { "Site", "Email", "Username", "password" };

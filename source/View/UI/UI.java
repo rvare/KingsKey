@@ -1,4 +1,9 @@
-import Listeners.*;
+package View.UI;
+
+//import View.*;
+import View.Listeners.*;
+//import View.Form.*;
+import Model.*;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -10,13 +15,15 @@ public class UI {
     static JFrame mainFrame;
     static JPanel contentDisplay;
     static JTable dataTable;
+    /*
     public static void main(String [] args) {       
         UI gui = new UI();
         /*special note: the controller class will have to call Backend.getData(); in the future 
-            to populate the 2D array that resides in the Backend class but for now this is a placeholder*/
+            to populate the 2D array that resides in the Backend class but for now this is a placeholder
         Backend.getData();
         gui.createUI();  
     }
+    */
 
     public void createUI() {
         //create the top level frame that hold everything

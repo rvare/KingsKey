@@ -1,15 +1,16 @@
+package Model.Trie;
 /*
  * No trie class exists in the java common libraries so this will be a basic one.
  */
 import java.util.HashMap;
 import java.util.Map;
 
-class Trie_Node{
+public class Trie_Node{
     private boolean Is_Leaf;
     private Map<Character, Trie_Node> Trie_Children;
 
     // Constructor
-    Trie_Node() {
+    public Trie_Node() {
         Is_Leaf = false;
         Trie_Children = new HashMap<>();
     }

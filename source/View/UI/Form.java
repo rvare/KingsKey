@@ -1,4 +1,7 @@
-import Listeners.*;
+package View.UI;
+
+import View.Listeners.*;
+import Model.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,12 +25,12 @@ public class Form extends JFrame {
     
     String mode;
     
-    Form() {
+    public Form() {
         gridPanel = new JPanel(new GridLayout(4, 4));
         getContentPane().add(BorderLayout.CENTER, gridPanel);
         
         dataTable = UI.getDataTable();
-        currRow = dataTable.getRowCount();
+        //currRow = dataTable.getRowCount();
         
         setUpLabelsAndFields();
         setUpButtons();
@@ -38,7 +41,7 @@ public class Form extends JFrame {
         //setVisible(true);
     }
     
-    Form(String dummy) { // dummy is used to call this constructor. Does nothing. Will find a better solution
+    public Form(String dummy) { // dummy is used to call this constructor. Does nothing. Will find a better solution
         this(); // Call the default constructor
         mode = dummy;
         currRow = dataTable.getSelectedRow();

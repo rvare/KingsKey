@@ -1,3 +1,5 @@
+package Model;
+
 public class DataContainer {
     private String websiteName;
     private String accountName;

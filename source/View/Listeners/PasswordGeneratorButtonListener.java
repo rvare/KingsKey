@@ -1,4 +1,7 @@
-package Listeners;
+package View.Listeners;
+
+import View.UI.*;
+import Model.*;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -11,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-class PasswordGeneratorButtonListener implements ActionListener {
+public class PasswordGeneratorButtonListener implements ActionListener {
     JPanel panel;
     public void actionPerformed(ActionEvent event) {
         // mainFrame.getContentPane().remove(UI.getContentDisplayPanel());

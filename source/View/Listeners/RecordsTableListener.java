@@ -1,4 +1,7 @@
-package Listeners;
+package View.Listeners;
+
+import Model.*;
+import View.UI.*;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;

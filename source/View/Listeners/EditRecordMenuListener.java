@@ -1,4 +1,4 @@
-package Listeners;
+package View.Listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,13 +7,15 @@ import javax.swing.JOptionPane;
 import javax.swing.*;
 import java.awt.*;
 
-class NewRecordMenuListener implements ActionListener {
+public class EditRecordMenuListener implements ActionListener {
     JFrame frame;
-    NewRecordMenuListener(JFrame f) {
+
+    public EditRecordMenuListener(JFrame f) {
         frame = f;
     }
+
     public void actionPerformed(ActionEvent evt) {
-        //Form f = new Form();
+        //Form f = new Form("Edit");
         frame.setVisible(true);
     }
 }
