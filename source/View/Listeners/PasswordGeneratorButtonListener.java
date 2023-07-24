@@ -54,12 +54,13 @@ public class PasswordGeneratorButtonListener implements ActionListener {
         //panel holds result output label
         JLabel passwordStrengthResults = new JLabel("Password Strength: ?");
         JLabel passwordEntropyResults = new JLabel("Password Entropy: ?");
-        JLabel hint = new JLabel("Hint: Enter a password. Try to go for at least 60 entropy\n for a decent password.");
+        JLabel hint = new JLabel("Hint:Try to go for at least 60 entropy for a decent password.");
         resultLabelHolder.add(passwordStrengthResults);
         resultLabelHolder.add(passwordEntropyResults);
         resultLabelHolder.add(hint);
         //panel holds textbox and button
-        JTextField textField = new JTextField("Enter Password", 20);
+        //JTextField textField = new JTextField("Enter Password", 20);
+        HintTextField textField = new HintTextField("Enter Password", 20);
         JButton testPasswordButton = new JButton("Test Password");
         textBoxAndButtonHolder.add(textField);
         textBoxAndButtonHolder.add(testPasswordButton);
