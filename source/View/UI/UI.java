@@ -86,6 +86,7 @@ public class UI {
         dataTable = new JTable(tableModel);
         dataTable.getTableHeader().setReorderingAllowed(false);
         dataTable.setDefaultEditor(Object.class, null);
+        dataTable.setAutoCreateRowSorter(true);
         copy.addActionListener(new CopyToClipBoardListener(dataTable));
         JScrollPane scrollPane = new JScrollPane(dataTable);
         contentDisplay.add(scrollPane);

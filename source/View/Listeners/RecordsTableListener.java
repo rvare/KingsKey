@@ -25,6 +25,7 @@ public class RecordsTableListener implements ActionListener {
         JTable dataTable = new JTable(tableModel);
         dataTable.getTableHeader().setReorderingAllowed(false);
         dataTable.setDefaultEditor(Object.class, null);
+        dataTable.setAutoCreateRowSorter(true);
         JScrollPane scrollPane = new JScrollPane(dataTable);
         panel.add(scrollPane);
         UI.getContentDisplayPanel().add(panel);
