@@ -1,8 +1,6 @@
 package View.UI;
 
-//import View.*;
 import View.Listeners.*;
-//import View.Form.*;
 import Model.*;
 
 import java.awt.*;
@@ -15,17 +13,13 @@ public class UI {
     static JFrame mainFrame;
     static JPanel contentDisplay;
     static JTable dataTable;
-    /*
-    public static void main(String [] args) {       
-        UI gui = new UI();
-        /*special note: the controller class will have to call Backend.getData(); in the future 
-            to populate the 2D array that resides in the Backend class but for now this is a placeholder
-        Backend.getData();
-        gui.createUI();  
-    }
-    */
 
     public void createUI() {
+        // Had to move these two lines because a null reference was being
+        //   passed for the Form class. The original is commented out.
+        DefaultTableModel tableModel = new DefaultTableModel(Backend.getDataObjects(), Backend.getColumnNames());
+        dataTable = new JTable(tableModel);
+
         //create the top level frame that hold everything
         mainFrame = new JFrame();
 
@@ -45,7 +39,7 @@ public class UI {
         JMenuItem preferencesMenu = new JMenuItem("Preferences");
         preferencesMenu.addActionListener(new PreferenceMenuListener());
         JMenuItem editRecordItem = new JMenuItem("Edit Record");
-        editRecordItem.addActionListener(new EditRecordMenuListener(new Form()));
+        editRecordItem.addActionListener(new EditRecordMenuListener(new Form("EditMode")));
         JMenu helpMenu = new JMenu("Help");
         JMenuItem aboutItem = new JMenuItem("About");
         aboutItem.addActionListener(new AboutMenuListener());
@@ -82,8 +76,8 @@ public class UI {
         contentDisplay = new JPanel(new BorderLayout());
         contentDisplay.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        DefaultTableModel tableModel= new DefaultTableModel(Backend.getDataObjects(), Backend.getColumnNames());
-        dataTable = new JTable(tableModel);
+        //DefaultTableModel tableModel = new DefaultTableModel(Backend.getDataObjects(), Backend.getColumnNames());
+        //dataTable = new JTable(tableModel);
         dataTable.getTableHeader().setReorderingAllowed(false);
         dataTable.setDefaultEditor(Object.class, null);
         dataTable.setAutoCreateRowSorter(true);

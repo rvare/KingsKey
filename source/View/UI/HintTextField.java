@@ -11,11 +11,13 @@ public class HintTextField extends JTextField implements FocusListener{
         hintString = text;
         this.addFocusListener(this);
     }
+
     public void focusGained(FocusEvent e) {
         if(this.getText().equals(hintString)) {
             this.setText("");
         }
     }
+
     public void focusLost(FocusEvent e) {
         if(this.getText().equals("")) {
             this.setText(hintString);

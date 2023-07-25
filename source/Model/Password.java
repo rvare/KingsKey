@@ -34,10 +34,12 @@ public class Password {
         //note it has to use this type of pathing to work in VSCode
         FileReader fileReader = new FileReader("source\\Dictionaries\\example.txt");
         BufferedReader bufferedReader = new BufferedReader(fileReader);
+        
         String line = null;
         while ((line = bufferedReader.readLine()) != null) {
             dictionary.insert(line);
         }
+
         bufferedReader.close();
     }
 
@@ -67,6 +69,7 @@ public class Password {
         int score = 0;
         int length = password.length();
         StringBuilder result = new StringBuilder("Password Strength: ");
+        
         //checking length
         if(length >= 8 && length <=10) {
             score += 1;

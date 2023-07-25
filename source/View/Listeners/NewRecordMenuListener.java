@@ -15,7 +15,6 @@ public class NewRecordMenuListener implements ActionListener {
         frame = f;
     }
     public void actionPerformed(ActionEvent evt) {
-        //Form f = new Form();
         frame.setVisible(true);
     }
 }

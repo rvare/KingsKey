@@ -5,7 +5,6 @@ import Model.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
@@ -29,8 +28,7 @@ public class Form extends JFrame {
         gridPanel = new JPanel(new GridLayout(4, 4));
         getContentPane().add(BorderLayout.CENTER, gridPanel);
         
-        //dataTable = UI.getDataTable();
-        //currRow = dataTable.getRowCount();
+        dataTable = UI.getDataTable();
         
         setUpLabelsAndFields();
         setUpButtons();
@@ -38,17 +36,19 @@ public class Form extends JFrame {
         setSize(400, 250);
         setResizable(false);
         mode = "New";
-        //setVisible(true);
     }
     
     public Form(String dummy) { // dummy is used to call this constructor. Does nothing. Will find a better solution
         this(); // Call the default constructor
         mode = dummy;
+        /*
+        // This will moved to do null reference error
         currRow = dataTable.getSelectedRow();
         websiteField.setText((String)dataTable.getValueAt(currRow, 0));
         accountField.setText((String)dataTable.getValueAt(currRow, 1));
         emailField.setText((String)dataTable.getValueAt(currRow, 2));
         passwordField.setText((String)dataTable.getValueAt(currRow, 3));
+        */
     }
     
     private void setUpLabelsAndFields() {
@@ -89,6 +89,14 @@ public class Form extends JFrame {
         buttonPanel.add(cancelButton);
         getContentPane().add(BorderLayout.SOUTH, buttonPanel);
     }
+
+    public void getTableInfo() {
+        currRow = dataTable.getSelectedRow();
+        websiteField.setText((String)dataTable.getValueAt(currRow, 0));
+        accountField.setText((String)dataTable.getValueAt(currRow, 1));
+        emailField.setText((String)dataTable.getValueAt(currRow, 2));
+        passwordField.setText((String)dataTable.getValueAt(currRow, 3));
+    }
     
     private class OkButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent evt) {
@@ -99,7 +107,7 @@ public class Form extends JFrame {
             row[2] = emailField.getText();
             row[3] = passwordField.getText();
             
-            if (mode.equals("New")) {
+            if (mode.equals("New")) { // Create new record
                 DefaultTableModel model = (DefaultTableModel) UI.getDataTable().getModel();
                 model.addRow(new Object [] {row[0], row[1], row [2], row[3]});
                 //saving changes to backend Object [][] data
@@ -112,7 +120,7 @@ public class Form extends JFrame {
                 }
                 Backend.updateDatabase(tableData);
             }
-            else {
+            else { // Write to the table
                 dataTable.setValueAt(row[0], currRow, 0);
                 dataTable.setValueAt(row[1], currRow, 1);
                 dataTable.setValueAt(row[2], currRow, 2);

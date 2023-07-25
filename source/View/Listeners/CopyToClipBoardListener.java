@@ -14,7 +14,6 @@ public class CopyToClipBoardListener implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent evt) {
-        //JTable table = UI.getDataTable();
         int row = table.getSelectedRow();
         int col = table.getSelectedColumn();
         String dataField = (String)table.getValueAt(row, col);

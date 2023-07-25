@@ -7,10 +7,10 @@ public class Controller {
     // May contain certain global constants needed.
     // Have constant that represents data file directory/path
     public static void main(String[] args) {
-         UI gui = new UI();
+        Backend.getData();
         /*special note: the controller class will have to call Backend.getData(); in the future 
             to populate the 2D array that resides in the Backend class but for now this is a placeholder*/
-        Backend.getData();
+        UI gui = new UI();
         gui.createUI();  
         /*
             Declare backend as Backend

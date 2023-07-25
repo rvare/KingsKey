@@ -44,6 +44,7 @@ public class PasswordGeneratorButtonListener implements ActionListener {
                 clipboard.setContents(selectedString, null);
             }
         });
+
         //creating panels for password testing layout
         JPanel resultLabelHolder = new JPanel();
         resultLabelHolder.setLayout(new BoxLayout(resultLabelHolder, BoxLayout.Y_AXIS));
@@ -51,6 +52,7 @@ public class PasswordGeneratorButtonListener implements ActionListener {
         JPanel textBoxAndButtonHolder = new JPanel();
         JPanel passwordTestPanel = new JPanel();
         passwordTestPanel.setLayout(new BoxLayout(passwordTestPanel, BoxLayout.Y_AXIS));
+        
         //panel holds result output label
         JLabel passwordStrengthResults = new JLabel("Password Strength: ?");
         JLabel passwordEntropyResults = new JLabel("Password Entropy: ?");
@@ -58,6 +60,7 @@ public class PasswordGeneratorButtonListener implements ActionListener {
         resultLabelHolder.add(passwordStrengthResults);
         resultLabelHolder.add(passwordEntropyResults);
         resultLabelHolder.add(hint);
+        
         //panel holds textbox and button
         //JTextField textField = new JTextField("Enter Password", 20);
         HintTextField textField = new HintTextField("Enter Password", 20);
@@ -74,6 +77,7 @@ public class PasswordGeneratorButtonListener implements ActionListener {
                 passwordEntropyResults.setText("Password Entropy: "+Password.calculateEntropy(pass));
             }
         });
+        
         //adding everything to a parent panel
         passwordTestPanel.add(resultLabelHolder);
         passwordTestPanel.add(textBoxAndButtonHolder);
