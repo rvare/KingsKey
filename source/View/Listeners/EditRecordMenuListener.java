@@ -17,8 +17,7 @@ public class EditRecordMenuListener implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent evt) {
-        //Form f = new Form("Edit");
         frame.getTableInfo();
         frame.setVisible(true);
     }
-}
+} // End of EditRecordMenuListener class

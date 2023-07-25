@@ -46,7 +46,7 @@ public class Controller {
             Clean up operations happen here when user is done
         */
     }
-}
+} // End of Controller class
 
 /*
 NOTES

@@ -30,4 +30,4 @@ public class RecordsTableListener implements ActionListener {
         panel.add(scrollPane);
         UI.getContentDisplayPanel().add(panel);
     }
-}
+} // End of RecordsTableListener class

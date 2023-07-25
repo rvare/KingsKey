@@ -38,17 +38,9 @@ public class Form extends JFrame {
         mode = "New";
     }
     
-    public Form(String dummy) { // dummy is used to call this constructor. Does nothing. Will find a better solution
+    public Form(String modeType) { // dummy is used to call this constructor. Does nothing. Will find a better solution
         this(); // Call the default constructor
-        mode = dummy;
-        /*
-        // This will moved to do null reference error
-        currRow = dataTable.getSelectedRow();
-        websiteField.setText((String)dataTable.getValueAt(currRow, 0));
-        accountField.setText((String)dataTable.getValueAt(currRow, 1));
-        emailField.setText((String)dataTable.getValueAt(currRow, 2));
-        passwordField.setText((String)dataTable.getValueAt(currRow, 3));
-        */
+        mode = modeType;
     }
     
     private void setUpLabelsAndFields() {
@@ -143,4 +135,4 @@ public class Form extends JFrame {
             passwordField.setText(Password.generatePassword());
         }
     }
-}
+} // End of Form class

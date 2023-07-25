@@ -13,4 +13,4 @@ public class AboutMenuListener implements ActionListener {
         JOptionPane.showMessageDialog(aboutFrame, "Created by:\n rvare and HenryWK7", "About",
                 JOptionPane.PLAIN_MESSAGE);
     }
-}
+} // End of AboutMenuListener class

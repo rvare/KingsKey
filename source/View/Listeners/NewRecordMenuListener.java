@@ -17,4 +17,4 @@ public class NewRecordMenuListener implements ActionListener {
     public void actionPerformed(ActionEvent evt) {
         frame.setVisible(true);
     }
-}
+} // End of NewRecordMenuListener class

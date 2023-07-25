@@ -122,6 +122,7 @@ public class Backend {
     public static String [] getColumnNames() {
         return columnNames;
     }
+    
     //updates the data [] after the user inserts a new entry
     public static void updateDatabase(Object [][] newDataObjects) {
         data = newDataObjects;

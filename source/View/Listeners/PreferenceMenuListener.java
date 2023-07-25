@@ -12,4 +12,4 @@ public class PreferenceMenuListener implements ActionListener {
         JOptionPane.showMessageDialog(preferenceFrame, "Settings", "Preferences",
             JOptionPane.PLAIN_MESSAGE);
     }
-}
+} // End of PreferenceMenuListener class

@@ -43,10 +43,6 @@ public class Password {
         bufferedReader.close();
     }
 
-    public static int calculatePasswordStrength(String password) {
-        return 0;
-    }
-
     public static String generatePassword() {
         Calendar cal = Calendar.getInstance();
         long dateInMillis = cal.getTimeInMillis(); // Current day in milliseconds will give better randomness
@@ -55,14 +51,6 @@ public class Password {
         long randomPassword = randomNum * dateInMillis * ((long)cal.hashCode() >>> 2); // Use the hash code othe Calendar object for add randomness
         
         return Long.toHexString(randomPassword);
-    }
-
-    public static int calculateBruteForceCrackingTime() {
-        return 0;
-    }
-
-    public static void printResults() {
-
     }
 
     public static String checkPasswordStrength(String password) {
@@ -129,4 +117,4 @@ public class Password {
         roundedEntropy = roundedEntropy.setScale(2, RoundingMode.HALF_UP);
         return roundedEntropy.doubleValue();
     }
-}
+} // End of Password class

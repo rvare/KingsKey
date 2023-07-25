@@ -49,7 +49,7 @@ public class Trie_Node{
 
         return Current_Node.Is_Leaf;
     }
-}
+} // End of Trie_Node class
 
 /*class Example {
     public static void main (String[] args) {

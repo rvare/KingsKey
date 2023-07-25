@@ -22,4 +22,4 @@ public class CopyToClipBoardListener implements ActionListener {
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(selectedString, selectedString);
     }
-}
+} // End of CopyToClipBoarListener class

@@ -25,4 +25,4 @@ public class HintTextField extends JTextField implements FocusListener{
             // as it will literally contain "Enter Password" for the password
         }
     }
-}
+} // End of HintTextField class
