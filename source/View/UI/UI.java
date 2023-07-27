@@ -18,6 +18,8 @@ public class UI {
 
     static JTable dataTable;
 
+    static JScrollPane scrollPane;
+
     public void createUI() {
         // Had to move these two lines because a null reference was being
         //   passed for the Form class. The original is commented out.
@@ -62,11 +64,11 @@ public class UI {
 
         JButton getRecordTableButton = new JButton("Records");
         JButton passwordGeneratorButton = new JButton("Password Generator");
-        JButton copy = new JButton("Copy to Clipboard");
+        JButton copyButton = new JButton("Copy to Clipboard");
         // Copy.addActionListener(new CopyToClipBoardListener(dataTable));
         firstRow.add(getRecordTableButton);
         firstRow.add(passwordGeneratorButton);
-        firstRow.add(copy);
+        firstRow.add(copyButton);
 
         // Adding event listeners
         passwordGeneratorButton.addActionListener(new PasswordGeneratorButtonListener());
@@ -85,8 +87,8 @@ public class UI {
         dataTable.getTableHeader().setReorderingAllowed(false);
         dataTable.setDefaultEditor(Object.class, null);
         dataTable.setAutoCreateRowSorter(true);
-        copy.addActionListener(new CopyToClipBoardListener(dataTable));
-        JScrollPane scrollPane = new JScrollPane(dataTable);
+        copyButton.addActionListener(new CopyToClipBoardListener(dataTable));
+        scrollPane = new JScrollPane(dataTable);
         contentDisplay.add(scrollPane);
 
         // Putting the sections into root layout
@@ -99,6 +101,14 @@ public class UI {
         optionsMenu.setVisible(true);
         firstRow.setVisible(true);
         contentDisplay.setVisible(true);
+    } // End of createUI
+
+    private void createRecordsUI() {
+
+    }
+
+    private void createGeneratePasswordUI() {
+
     }
     
     public static JPanel getContentDisplayPanel() {
@@ -113,16 +123,12 @@ public class UI {
         return mainFrame;
     }
 
-    private void createRecordsUI() {
-
-    }
-
-    private void createGeneratePasswordUI() {
-
-    }
-
     public static JPanel getRecordsPane() {
         return contentDisplay;
+    }
+
+    public static JScrollPane getScrollPane() {
+        return scrollPane;
     }
 
     public JPanel getPasswordGeneratorPane() {

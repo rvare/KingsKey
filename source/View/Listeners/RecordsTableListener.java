@@ -14,12 +14,15 @@ import javax.swing.table.DefaultTableModel;
 public class RecordsTableListener implements ActionListener {
     public void actionPerformed(ActionEvent event) {
         UI.getContentDisplayPanel().removeAll();
-        createDefaultUI();
+        //createDefaultUI();
+        UI.getContentDisplayPanel().add(UI.getScrollPane());
         UI.getContentDisplayPanel().revalidate();
         UI.getContentDisplayPanel().repaint();
     }
 
+    // This method is to be removed because it contains repeated buggy code cause no updates to the table to happen.
     public void createDefaultUI() {
+        /*
         JPanel panel = new JPanel(new BorderLayout());
         DefaultTableModel tableModel = new DefaultTableModel(Backend.getDataObjects(), Backend.getColumnNames());
         JTable dataTable = new JTable(tableModel);
@@ -29,5 +32,6 @@ public class RecordsTableListener implements ActionListener {
         JScrollPane scrollPane = new JScrollPane(dataTable);
         panel.add(scrollPane);
         UI.getContentDisplayPanel().add(panel);
+        */
     }
 } // End of RecordsTableListener class
