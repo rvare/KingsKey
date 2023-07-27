@@ -21,7 +21,7 @@ public class RecordsTableListener implements ActionListener {
 
     public void createDefaultUI() {
         JPanel panel = new JPanel(new BorderLayout());
-        DefaultTableModel tableModel= new DefaultTableModel(Backend.getDataObjects(), Backend.getColumnNames());
+        DefaultTableModel tableModel = new DefaultTableModel(Backend.getDataObjects(), Backend.getColumnNames());
         JTable dataTable = new JTable(tableModel);
         dataTable.getTableHeader().setReorderingAllowed(false);
         dataTable.setDefaultEditor(Object.class, null);

@@ -119,6 +119,7 @@ public class Form extends JFrame {
                 dataTable.setValueAt(row[3], currRow, 3);
             }
             
+            //UI.getContentDisplayPanel().repaint();
             dispose();
         }
     }

@@ -12,6 +12,10 @@ import javax.swing.table.DefaultTableModel;
 public class UI {
     static JFrame mainFrame;
     static JPanel contentDisplay;
+
+    static JPanel recordsPane;
+    static JPanel passwordPane;
+
     static JTable dataTable;
 
     public void createUI() {
@@ -103,5 +107,25 @@ public class UI {
     
     public static JTable getDataTable() {
         return dataTable;
+    }
+
+    public static JFrame getMainFrame() {
+        return mainFrame;
+    }
+
+    private void createRecordsUI() {
+
+    }
+
+    private void createGeneratePasswordUI() {
+
+    }
+
+    public static JPanel getRecordsPane() {
+        return contentDisplay;
+    }
+
+    public JPanel getPasswordGeneratorPane() {
+        return new JPanel();
     }
 } // End of UI class
