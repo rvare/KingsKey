@@ -3,18 +3,21 @@ package View.Listeners;
 import View.UI.*;
 import Model.*;
 
+import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class PasswordGeneratorButtonListener implements ActionListener {
     JPanel panel;
@@ -62,7 +65,6 @@ public class PasswordGeneratorButtonListener implements ActionListener {
         resultLabelHolder.add(hint);
         
         // Panel holds textbox and button
-        // JTextField textField = new JTextField("Enter Password", 20);
         HintTextField textField = new HintTextField("Enter Password", 20);
         JButton testPasswordButton = new JButton("Test Password");
         textBoxAndButtonHolder.add(textField);
@@ -77,12 +79,30 @@ public class PasswordGeneratorButtonListener implements ActionListener {
                 passwordEntropyResults.setText("Password Entropy: "+Password.calculateEntropy(pass));
             }
         });
+
+        passwordTestPanel.setFocusable(true);
         
         // Adding everything to a parent panel
         passwordTestPanel.add(resultLabelHolder);
         passwordTestPanel.add(textBoxAndButtonHolder);
+        //allows textbox to be deselected when clicking this area
+        passwordTestPanel.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                passwordTestPanel.requestFocusInWindow();
+            }
+        });
+        passwordTestPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         generatePassJPanel.add(placeholder);
         generatePassJPanel.add(generate);
+        generatePassJPanel.setFocusable(true);
+        //allows textbox to be deselected when clicking this area
+        generatePassJPanel.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                generatePassJPanel.requestFocusInWindow();
+            }
+        });
+
+        generatePassJPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         panel.add(generatePassJPanel);
         panel.add(passwordTestPanel);
         UI.getContentDisplayPanel().add(panel);
