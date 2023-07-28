@@ -1,17 +1,29 @@
 import View.Listeners.*;
 import View.UI.*;
+
+import javax.swing.UIManager;
+
 import Model.*;
 import Model.Trie.*;
 
 public class Controller {
+    private static String defaultTheme = "com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel";
     // May contain certain global constants needed.
     // Have constant that represents data file directory/path
     public static void main(String[] args) {
+        initializeTheme(defaultTheme);
         Backend.getData();
         /*special note: the controller class will have to call Backend.getData(); in the future 
             to populate the 2D array that resides in the Backend class but for now this is a placeholder*/
         UI gui = new UI();
         gui.createUI();  
+
+        // find out what themes are available
+        UIManager.LookAndFeelInfo[] looks = UIManager.getInstalledLookAndFeels();
+        for (UIManager.LookAndFeelInfo look : looks) {
+            System.out.println(look.getClassName());
+        }
+        
         /*
             Declare backend as Backend
             Declare applicationUI as UI
@@ -45,6 +57,15 @@ public class Controller {
             END TRY-CATCH
             Clean up operations happen here when user is done
         */
+    }
+
+    private static void initializeTheme(String theme) {
+        try {
+            UIManager.setLookAndFeel(theme);
+        }
+        catch (Exception e) {
+            System.out.println("Look and Feel not set");
+        }
     }
 } // End of Controller class
 
