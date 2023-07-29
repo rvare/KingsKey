@@ -111,6 +111,7 @@ public class Form extends JFrame {
                     }
                 }
                 Backend.updateDatabase(tableData);
+                clearForm();
             }
             else { // Write to the table
                 dataTable.setValueAt(row[0], currRow, 0);
@@ -122,6 +123,12 @@ public class Form extends JFrame {
             //UI.getContentDisplayPanel().repaint();
             dispose();
         }
+    }
+    private void clearForm() {
+        websiteField.setText("");
+        accountField.setText("");
+        emailField.setText("");
+        passwordField.setText("");
     }
     
     private class CancelButtonListener implements ActionListener {
