@@ -28,6 +28,7 @@ public class UI {
 
         // Create the top level frame that hold everything
         mainFrame = new JFrame();
+        mainFrame.setTitle("Kings Key");
 
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(1000, 600);
