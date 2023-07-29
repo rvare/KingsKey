@@ -4,6 +4,7 @@ import Model.Trie.*;
 
 import java.util.*;
 import java.io.*;
+import java.lang.instrument.Instrumentation;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -12,7 +13,18 @@ public class Password {
     static Trie_Node dictionary = new Trie_Node();
     
     public static void main(String [] args) throws IOException{
+        // Get current size of heap in bytes
+        long heapSize = Runtime.getRuntime().totalMemory();
+        // Get maximum size of heap in bytes. The heap cannot grow beyond this size.
+        // Any attempt will result in an OutOfMemoryException.
+        long heapMaxSize = Runtime.getRuntime().maxMemory();
+
         loadDictionary();
+
+        // Get amount of free memory within the heap in bytes. This size will increase
+        // after garbage collection and decrease as new objects are created.
+        long heapFreeSize = Runtime.getRuntime().freeMemory();
+
         String password = "hockey";
         String password2 = "football";
         
@@ -21,8 +33,18 @@ public class Password {
         System.out.println("The generated password is: "+generatedPassword);
         System.out.println("Searching Results Found = :"+dictionary.search(password));
         System.out.println("Searching Results Found = :"+dictionary.search(password2));
+        System.out.println("Searching Results Found = :"+dictionary.search("#golden"));
+        System.out.println("Searching Results Found = :"+dictionary.search("reckLe$s"));
+        System.out.println("Searching Results Found = :" + dictionary.search("vlad&*"));
         
-        System.out.println("Password Generation");
+        System.out.println("\nMemory calculations in bytes");
+        System.out.println("Total allocated memory: "+heapSize);
+        System.out.println("Max memory including unallocated memory: "+heapMaxSize);
+        System.out.println("After loading. Allocated memory that's unused: "+heapFreeSize);
+        System.out.println("Used memory in bytes: "+(heapSize-heapFreeSize));
+        //System.out.println("Size of the tree is: "+ObjectSizeFetcher.getObjectSize((Object)dictionary));
+
+        System.out.println("\nPassword Generation");
         System.out.println(Password.generatePassword());
         System.out.println("Checking password strength of:" +password);
         System.out.println(checkPasswordStrength(password));
@@ -31,8 +53,9 @@ public class Password {
     }
     
     private static void loadDictionary() throws IOException {
-        //note it has to use this type of pathing to work in VSCode
-        FileReader fileReader = new FileReader("source\\Dictionaries\\example.txt");
+        //String filepath = "source\\Dictionaries\\passwords.txt";
+        String filepath = "source\\Dictionaries\\example.txt";
+        FileReader fileReader = new FileReader(filepath);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         
         String line = null;
@@ -118,3 +141,16 @@ public class Password {
         return roundedEntropy.doubleValue();
     }
 } // End of Password class
+
+//class to check object size. doesn't work as is. have to run this separately on command line as jar file
+/*class ObjectSizeFetcher {
+    private static Instrumentation instrumentation;
+
+    public static void premain(String args, Instrumentation inst) {
+        instrumentation = inst;
+    }
+
+    public static long getObjectSize(Object o) {
+        return instrumentation.getObjectSize(o);
+    }
+}*/
