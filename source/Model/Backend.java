@@ -6,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Backend {
     private ArrayList<DataContainer> userData;
-    private static String dataFilePath = "../../testers/TestData";
+    private static String dataFilePath = "../testers/EncryptedTestData";
     private static Backend instance;
     private static Object[][] data;
     private static final String[] columnNames = { "Site", "Email", "Username", "password" };
@@ -16,7 +16,7 @@ public class Backend {
         userData = new ArrayList<DataContainer>();
     }
 
-    public static Backend createInstance() {
+    public static Backend getInstance() {
         if (instance == null) {
             instance = new Backend();
         }
@@ -30,10 +30,24 @@ public class Backend {
 
         try {
             BufferedReader bf = new BufferedReader(new FileReader(dataFilePath));
+            /*
             while ((temp = bf.readLine()) != null) {
                 encryptedLines.add(temp);
             }
+            */
+            String encryptedLine = bf.readLine(); // Temporary statement; shouldn't be like this, but whatever.
             bf.close();
+
+            decryptedLines = decryptData(encryptedLine);
+
+            // Initialize 2D array to hold data for JTable
+            int numberOfColumns = decryptedLines.get(0).split(";").length;
+            data = new Object[decryptedLines.size()][numberOfColumns];
+            
+            // Put data into 2D array
+            for (int i = 0; i < decryptedLines.size(); i++) {
+                data[i] = decryptedLines.get(i).split(";");
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }

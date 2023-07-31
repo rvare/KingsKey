@@ -18,10 +18,12 @@ public class Controller {
     // Have constant that represents data file directory/path
     public static void main(String[] args) {
 
-        //initializeTheme(defaultTheme)
-        setDarkNimbusTheme();
+        initializeTheme(defaultTheme);
+        //setDarkNimbusTheme();
 
-        Backend.getData();
+        //Backend.getData();
+        Backend backend = Backend.getInstance();
+        backend.gatherUserData();
         /*special note: the controller class will have to call Backend.getData(); in the future 
             to populate the 2D array that resides in the Backend class but for now this is a placeholder*/
         UI gui = new UI();
