@@ -30,11 +30,6 @@ public class Backend {
 
         try {
             BufferedReader bf = new BufferedReader(new FileReader(dataFilePath));
-            /*
-            while ((temp = bf.readLine()) != null) {
-                encryptedLines.add(temp);
-            }
-            */
             String encryptedLine = bf.readLine(); // Temporary statement; shouldn't be like this, but whatever.
             bf.close();
 
@@ -60,7 +55,7 @@ public class Backend {
             parsedLine = parseLine(line);
             userData.add(new DataContainer(parsedLine));
         }
-    }
+    } // End of gatherUserData
 
     private ArrayList<String> decryptData(final String line) { // Implement decryption algorithm later
         byte[] rawData = line.getBytes(); // Gets bytes of the string
@@ -75,7 +70,7 @@ public class Backend {
         ArrayList<String> decryptedLines = new ArrayList<String>(Arrays.asList(arrayOfLines));
 
         return decryptedLines;
-    }
+    } // End of decryptData
 
     private ArrayList<String> encryptData() { // Temporary stub
         return new ArrayList<String>();
@@ -97,11 +92,6 @@ public class Backend {
 
     public static void getData() {
         try {
-            /*final ClassLoader cl = Thread.currentThread().getContextClassLoader();
-            InputStream inputStream = cl.getResourceAsStream("TestData");
-            InputStreamReader streamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
-            BufferedReader bufferedReader = new BufferedReader(streamReader);*/
-
             String path = "../testers/TestData"; // testers\\TestData -> May need to use for Windows
             BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
             ArrayList<String> list = new ArrayList<>();
@@ -111,6 +101,7 @@ public class Backend {
             while ((str = bufferedReader.readLine()) != null) {
                 list.add(str);
             }
+            bufferedReader.close();
             
             // Initialize 2D array to hold data for JTable
             int numberOfColumns = list.get(0).split(";").length;
@@ -120,14 +111,10 @@ public class Backend {
             for (int i = 0; i < list.size(); i++) {
                 data[i] = list.get(i).split(";");
             }
-            
-            bufferedReader.close();
-            //return data;
         } catch (Exception e) {
             e.printStackTrace();
-            //return null;
         }
-    }
+    } // End of getData
 
     public static Object [][] getDataObjects() {
         return data;

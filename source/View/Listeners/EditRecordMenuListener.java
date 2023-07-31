@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class EditRecordMenuListener implements ActionListener {
-    Form frame;
+    private Form frame;
 
     public EditRecordMenuListener(Form f) {
         frame = f;

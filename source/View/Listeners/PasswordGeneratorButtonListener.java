@@ -20,7 +20,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class PasswordGeneratorButtonListener implements ActionListener {
-    JPanel panel;
+    private JPanel panel;
+
     public void actionPerformed(ActionEvent event) {
         // mainFrame.getContentPane().remove(UI.getContentDisplayPanel());
         UI.getContentDisplayPanel().removeAll();
@@ -106,5 +107,5 @@ public class PasswordGeneratorButtonListener implements ActionListener {
         panel.add(generatePassJPanel);
         panel.add(passwordTestPanel);
         UI.getContentDisplayPanel().add(panel);
-    }
+    } // End of generatePasswordUI
 } // End of PasswordGeneratorButtonListener class

@@ -10,19 +10,19 @@ import javax.swing.table.*;
 import java.awt.*;
 
 public class Form extends JFrame {
-    JPanel gridPanel;
-    JPanel buttonPanel;
-    JTable dataTable;
+    private JPanel gridPanel;
+    private JPanel buttonPanel;
+    private JTable dataTable;
     
-    JTextField passwordField;
-    JTextField websiteField;
-    JTextField accountField;
-    JTextField emailField;
+    private JTextField passwordField;
+    private JTextField websiteField;
+    private JTextField accountField;
+    private JTextField emailField;
     
-    int currRow;
-    int currCol;
+    private int currRow;
+    private int currCol;
     
-    String mode;
+    private String mode;
     
     public Form() {
         gridPanel = new JPanel(new GridLayout(4, 4));
@@ -62,7 +62,7 @@ public class Form extends JFrame {
         gridPanel.add(emailField);
         gridPanel.add(passwordLabel);
         gridPanel.add(passwordField);
-    }
+    } // End of setUpLabelsAndFields
     
     private void setUpButtons() {
         buttonPanel = new JPanel();
@@ -80,7 +80,7 @@ public class Form extends JFrame {
         buttonPanel.add(okButton);
         buttonPanel.add(cancelButton);
         getContentPane().add(BorderLayout.SOUTH, buttonPanel);
-    }
+    } // End of setUpButtons
 
     public void getTableInfo() {
         currRow = dataTable.getSelectedRow();
@@ -88,7 +88,7 @@ public class Form extends JFrame {
         accountField.setText((String)dataTable.getValueAt(currRow, 1));
         emailField.setText((String)dataTable.getValueAt(currRow, 2));
         passwordField.setText((String)dataTable.getValueAt(currRow, 3));
-    }
+    } // End of getTableInfo
     
     private class OkButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent evt) {
@@ -123,7 +123,8 @@ public class Form extends JFrame {
             //UI.getContentDisplayPanel().repaint();
             dispose();
         }
-    }
+    } // End of OkButtonListener
+
     private void clearForm() {
         websiteField.setText("");
         accountField.setText("");

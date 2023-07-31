@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class NewRecordMenuListener implements ActionListener {
-    JFrame frame;
+    private JFrame frame;
     public NewRecordMenuListener(JFrame f) {
         frame = f;
     }

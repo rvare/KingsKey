@@ -10,7 +10,7 @@ import java.math.RoundingMode;
 
 public class Password {
 
-    static Trie_Node dictionary = new Trie_Node();
+    static Trie_Node dictionary = new Trie_Node(); // FIX: Is this suppose to be private?
     
     public static void main(String [] args) throws IOException{
         // Get current size of heap in bytes

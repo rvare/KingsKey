@@ -10,15 +10,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 public class UI {
-    static JFrame mainFrame;
-    static JPanel contentDisplay;
+    private static JFrame mainFrame;
+    private static JPanel contentDisplay;
 
-    static JPanel recordsPane;
-    static JPanel passwordPane;
+    private static JPanel recordsPane;
+    private static JPanel passwordPane;
 
-    static JTable dataTable;
+    private static JTable dataTable;
 
-    static JScrollPane scrollPane;
+    private static JScrollPane scrollPane;
 
     public void createUI() {
         // Had to move these two lines because a null reference was being

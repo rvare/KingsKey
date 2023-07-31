@@ -8,7 +8,7 @@ import java.awt.datatransfer.Clipboard;
 import javax.swing.*;
 
 public class CopyToClipBoardListener implements ActionListener {
-    JTable table;
+    private JTable table;
     public CopyToClipBoardListener(JTable t) {
         table = t;
     }
