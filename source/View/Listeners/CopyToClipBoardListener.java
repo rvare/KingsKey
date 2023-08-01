@@ -16,7 +16,7 @@ public class CopyToClipBoardListener implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent evt) {
-        try{
+        try {
             int row = table.getSelectedRow();
             int col = table.getSelectedColumn();
             String dataField = (String)table.getValueAt(row, col);
@@ -24,16 +24,18 @@ public class CopyToClipBoardListener implements ActionListener {
             StringSelection selectedString = new StringSelection(dataField);
             Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
             clipboard.setContents(selectedString, selectedString);
-        }catch(IndexOutOfBoundsException e){
+        }
+        catch(IndexOutOfBoundsException e) {
             //nothingSelectedErrorMessage();
             ErrorMessageWindow.makeMessage("No item selected. Please select an item.");
-        }catch(Exception e){
+        }
+        catch(Exception e) {
             e.printStackTrace();
         }
         
     }
 
-    public static void nothingSelectedErrorMessage(){
+    public static void nothingSelectedErrorMessage() {
         JFrame frame = new JFrame();
         frame.setResizable(true);
         frame.setSize(350,100);

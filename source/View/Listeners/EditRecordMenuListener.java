@@ -20,9 +20,11 @@ public class EditRecordMenuListener implements ActionListener {
         try {
             frame.getTableInfo();
             frame.setVisible(true);
-        } catch (IndexOutOfBoundsException e) {
+        }
+        catch (IndexOutOfBoundsException e) {
             CopyToClipBoardListener.nothingSelectedErrorMessage();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
