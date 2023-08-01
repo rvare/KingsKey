@@ -32,6 +32,7 @@ public class UI {
 
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(1000, 600);
+        mainFrame.setLocationRelativeTo(null);
         
         // Create the options menu 
         JPanel optionsMenu = new JPanel();
