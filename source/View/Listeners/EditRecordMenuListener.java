@@ -17,7 +17,13 @@ public class EditRecordMenuListener implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent evt) {
-        frame.getTableInfo();
-        frame.setVisible(true);
+        try {
+            frame.getTableInfo();
+            frame.setVisible(true);
+        } catch (IndexOutOfBoundsException e) {
+            CopyToClipBoardListener.nothingSelectedErrorMessage();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 } // End of EditRecordMenuListener class
