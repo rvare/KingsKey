@@ -7,6 +7,8 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import javax.swing.*;
 
+import View.UI.ErrorMessageWindow;
+
 public class CopyToClipBoardListener implements ActionListener {
     private JTable table;
     public CopyToClipBoardListener(JTable t) {
@@ -23,7 +25,8 @@ public class CopyToClipBoardListener implements ActionListener {
             Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
             clipboard.setContents(selectedString, selectedString);
         }catch(IndexOutOfBoundsException e){
-            nothingSelectedErrorMessage();
+            //nothingSelectedErrorMessage();
+            ErrorMessageWindow.makeMessage("No item selected. Please select an item.");
         }catch(Exception e){
             e.printStackTrace();
         }
