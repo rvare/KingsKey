@@ -27,6 +27,7 @@ public class Form extends JFrame {
     public Form() {
         gridPanel = new JPanel(new GridLayout(4, 4));
         getContentPane().add(BorderLayout.CENTER, gridPanel);
+        setLocationRelativeTo(null);
         
         dataTable = UI.getDataTable();
         
