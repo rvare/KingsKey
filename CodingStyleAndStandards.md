@@ -18,6 +18,7 @@ The following are the coding style rules and coding standards used for this proj
     1. *Exception:* Inside function parameters.
 10. For function parameters, use a space after each comma.
 11. Within methods, use logical grouping.
+12. Standard Java packages are first, then user created packages with space between them.
 
 ## Examples
 
@@ -68,3 +69,4 @@ for (String line : lines) {
     System.out.println(line);
 }
 ```
+

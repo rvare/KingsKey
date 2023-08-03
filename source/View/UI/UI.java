@@ -1,23 +1,20 @@
 package View.UI;
 
-import View.Listeners.*;
-import Model.*;
-
 import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import View.Listeners.*;
+import Model.*;
+
 public class UI {
     private static JFrame mainFrame;
     private static JPanel contentDisplay;
-
     private static JPanel recordsPane;
     private static JPanel passwordPane;
-
     private static JTable dataTable;
-
     private static JScrollPane scrollPane;
 
     public void createUI() {

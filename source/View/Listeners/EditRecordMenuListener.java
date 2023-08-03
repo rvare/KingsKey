@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 import javax.swing.*;
 import java.awt.*;
 
+import View.UI.ErrorMessageWindow;
+
 public class EditRecordMenuListener implements ActionListener {
     private Form frame;
 
@@ -22,7 +24,8 @@ public class EditRecordMenuListener implements ActionListener {
             frame.setVisible(true);
         }
         catch (IndexOutOfBoundsException e) {
-            CopyToClipBoardListener.nothingSelectedErrorMessage();
+            //CopyToClipBoardListener.nothingSelectedErrorMessage();
+            ErrorMessageWindow.makeMessage("No item selected. Please select an item to edit.");
         }
         catch (Exception e) {
             e.printStackTrace();
