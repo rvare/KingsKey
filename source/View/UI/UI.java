@@ -2,6 +2,9 @@ package View.UI;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -11,17 +14,20 @@ import Model.*;
 
 public class UI {
     private static JFrame mainFrame;
+    private static JPanel firstRow;
     private static JPanel contentDisplay;
     private static JPanel recordsPane;
     private static JPanel passwordPane;
     private static JTable dataTable;
     private static JScrollPane scrollPane;
+    private static DeleteRowButton deleteRowButton;
 
     public void createUI() {
         // Had to move these two lines because a null reference was being
         //   passed for the Form class. The original is commented out.
         DefaultTableModel tableModel = new DefaultTableModel(Backend.getDataObjects(), Backend.getColumnNames());
         dataTable = new JTable(tableModel);
+        dataTable.addFocusListener(new DeleteRecordListener());
 
         // Create the top level frame that hold everything
         mainFrame = new JFrame();
@@ -59,15 +65,18 @@ public class UI {
         mainFrame.setJMenuBar(menuBar);
 
         // Create a panel to hold the second row of buttons
-        JPanel firstRow = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
+        firstRow = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
 
         JButton getRecordTableButton = new JButton("Records");
         JButton passwordGeneratorButton = new JButton("Password Generator");
         JButton copyButton = new JButton("Copy to Clipboard");
-        // Copy.addActionListener(new CopyToClipBoardListener(dataTable));
+        deleteRowButton = new DeleteRowButton();
+        // Copy.addActionListener(new CopyToClipBoard Listener(dataTable));
         firstRow.add(getRecordTableButton);
         firstRow.add(passwordGeneratorButton);
         firstRow.add(copyButton);
+        firstRow.add(deleteRowButton);
+        deleteRowButton.setVisible(false);
 
         // Adding event listeners
         passwordGeneratorButton.addActionListener(new PasswordGeneratorButtonListener());
@@ -124,6 +133,14 @@ public class UI {
 
     public static JPanel getRecordsPane() {
         return contentDisplay;
+    }
+
+    public static JPanel getFirstRowPanel() {
+        return firstRow;
+    }
+
+    public static DeleteRowButton getDeleteRowButton() {
+        return deleteRowButton;
     }
 
     public static JScrollPane getScrollPane() {
