@@ -7,22 +7,26 @@ import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JRadioButton;
+import javax.swing.LookAndFeel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.EmptyBorder;
 
 import Model.Password;
-import View.UI.UI;
+import View.UI.*;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class PreferenceMenuListener implements ActionListener {
+    //private static JLabel currentTheme;
     public void actionPerformed(ActionEvent evt) {
         JFrame preferenceFrame = new JFrame("Themes");
         preferenceFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        preferenceFrame.setSize(250, 200);
+        preferenceFrame.setSize(250, 250);
         preferenceFrame.setLocationRelativeTo(null);
         preferenceFrame.setResizable(false);
         JPanel themePanel = new JPanel();
@@ -39,6 +43,9 @@ public class PreferenceMenuListener implements ActionListener {
         option4.setActionCommand("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         JRadioButton option5 = new JRadioButton("Windows Classic");
         option5.setActionCommand("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
+        JRadioButton option6 = new JRadioButton("Dark Nimbus");
+        //option6 not available yet. need a fix. currently does default nimbus instead as placeholder
+        option6.setActionCommand("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 
         ButtonGroup themes = new ButtonGroup();
         themes.add(option1);
@@ -46,13 +53,17 @@ public class PreferenceMenuListener implements ActionListener {
         themes.add(option3);
         themes.add(option4);
         themes.add(option5);
+        themes.add(option6);
 
+        JLabel currentTheme = new JLabel(getTheme());
+        preferenceFrame.getContentPane().add(BorderLayout.NORTH, currentTheme);
         themePanel.add(option1);
         themePanel.add(option2);
         themePanel.add(option3);
         themePanel.add(option4);
         themePanel.add(option5);
-        preferenceFrame.getContentPane().add(themePanel);
+        themePanel.add(option6);
+        preferenceFrame.getContentPane().add(BorderLayout.CENTER, themePanel);
 
         JPanel buttonPanel = new JPanel();
 
@@ -61,6 +72,7 @@ public class PreferenceMenuListener implements ActionListener {
             public void actionPerformed(ActionEvent e){
                 String selectedTheme = themes.getSelection().getActionCommand();
                 setTheme(selectedTheme);
+                currentTheme.setText(getTheme());
             }
         });
 
@@ -71,6 +83,7 @@ public class PreferenceMenuListener implements ActionListener {
                 try {
                     selectedTheme = themes.getSelection().getActionCommand();
                     setTheme(selectedTheme);
+                    currentTheme.setText(getTheme());
                 } 
                 catch (NullPointerException error) {
                     //do something here
@@ -104,8 +117,16 @@ public class PreferenceMenuListener implements ActionListener {
             SwingUtilities.updateComponentTreeUI(UI.getMainFrame());
         }
         catch (Exception e) {
+            //Themes.setDarkNimbusTheme();
             e.printStackTrace();
+            //Themes.setDarkNimbusTheme();
         }
+    }
+
+    private String getTheme() {
+        //LookAndFeel look = UIManager.getLookAndFeel();
+        LookAndFeel look = UIManager.getLookAndFeel();
+        return look.getName();
     }
 
 } // End of PreferenceMenuListener class
