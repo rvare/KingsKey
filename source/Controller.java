@@ -21,6 +21,9 @@ public class Controller {
         initializeTheme(defaultTheme);
         //setDarkNimbusTheme();
 
+        LoginWindow lw = new LoginWindow();
+        lw.showLogin();
+
         //Backend.getData();
         Backend backend = Backend.getInstance();
         backend.gatherUserData();
