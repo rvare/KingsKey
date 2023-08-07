@@ -17,7 +17,7 @@ public class Trie_Node{
 
     // Insertion
     public void insert(String Node_Key) {
-        System.out.println("Inserting the key \"" + Node_Key + "\"");
+        //System.out.println("Inserting the key \"" + Node_Key + "\"");
 
         // root node
         Trie_Node root_node = this;

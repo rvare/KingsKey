@@ -11,7 +11,8 @@ import java.security.SecureRandom;
 
 public class Password {
 
-    static Trie_Node dictionary = new Trie_Node(); // FIX: Is this suppose to be private?
+    private static Trie_Node dictionary = new Trie_Node(); 
+    //private static HashSet<String> dictionary = new HashSet<>();
     
     public static void main(String [] args) throws IOException{
         // Get current size of heap in bytes
@@ -37,6 +38,13 @@ public class Password {
         System.out.println("Searching Results Found = :"+dictionary.search("#golden"));
         System.out.println("Searching Results Found = :"+dictionary.search("reckLe$s"));
         System.out.println("Searching Results Found = :" + dictionary.search("vlad&*"));
+
+        /*System.out.println("The generated password is: "+generatedPassword);
+        System.out.println("Searching Results Found = :"+dictionary.contains(password));
+        System.out.println("Searching Results Found = :"+dictionary.contains(password2));
+        System.out.println("Searching Results Found = :"+dictionary.contains("#golden"));
+        System.out.println("Searching Results Found = :"+dictionary.contains("reckLe$s"));
+        System.out.println("Searching Results Found = :" + dictionary.contains("vlad&*"));*/
         
         System.out.println("\nMemory calculations in bytes");
         System.out.println("Total allocated memory: "+heapSize);
@@ -55,13 +63,14 @@ public class Password {
     
     private static void loadDictionary() throws IOException {
         //String filepath = "source\\Dictionaries\\passwords.txt";
-        String filepath = "source\\Dictionaries\\example.txt";
+        String filepath = "source/Dictionaries/passwords.txt";
         FileReader fileReader = new FileReader(filepath);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         
         String line = null;
         while ((line = bufferedReader.readLine()) != null) {
             dictionary.insert(line);
+            //dictionary.add(line);
         }
 
         bufferedReader.close();
