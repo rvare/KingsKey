@@ -7,6 +7,7 @@ import java.io.*;
 import java.lang.instrument.Instrumentation;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.security.SecureRandom;
 
 public class Password {
 
@@ -65,7 +66,7 @@ public class Password {
 
         bufferedReader.close();
     }
-
+    /* 
     public static String generatePassword() {
         Calendar cal = Calendar.getInstance();
         long dateInMillis = cal.getTimeInMillis(); // Current day in milliseconds will give better randomness
@@ -74,7 +75,39 @@ public class Password {
         long randomPassword = randomNum * dateInMillis * ((long)cal.hashCode() >>> 2); // Use the hash code othe Calendar object for add randomness
         
         return Long.toHexString(randomPassword);
+    }*/
+    public static String generatePassword() {
+        return generatePassword(16);
     }
+
+    public static String generatePassword(int length) {
+        //minimum length of 6
+        if (length < 16) {
+            length = 16;
+        }
+
+        final char[] lowercase = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        final char[] uppercase = "ABCDEFGJKLMNPRSTUVWXYZ".toCharArray();
+        final char[] numbers = "0123456789".toCharArray();
+        final char[] symbols = "^$?!@#%&()".toCharArray();
+        final char[] allChars = "abcdefghijklmnopqrstuvwxyzABCDEFGJKLMNPRSTUVWXYZ0123456789^$?!@#%&()".toCharArray();
+
+        Random random = new SecureRandom();
+        StringBuilder password = new StringBuilder(); 
+
+        for (int i = 0; i < length-4; i++) {
+            password.append(allChars[random.nextInt(allChars.length)]);
+        }
+
+        //Ensure password policy is met by inserting required random chars in random positions
+        password.insert(random.nextInt(password.length()), lowercase[random.nextInt(lowercase.length)]);
+        password.insert(random.nextInt(password.length()), uppercase[random.nextInt(uppercase.length)]);
+        password.insert(random.nextInt(password.length()), numbers[random.nextInt(numbers.length)]);
+        password.insert(random.nextInt(password.length()), symbols[random.nextInt(symbols.length)]);
+
+        return password.toString();
+    }
+
 
     public static String checkPasswordStrength(String password) {
         int score = 0;
@@ -102,7 +135,7 @@ public class Password {
         if(password.matches("(?=.*[0-9]).*")) {  //check for numbers
             score++;
         }
-        if(password.matches("(?=.*[!@#$%^&*]).*")) {  //check for special characters
+        if(password.matches("(?=.*[!@#$%^&*()]).*")) {  //check for special characters
             score++;
         }
 
