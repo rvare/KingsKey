@@ -139,7 +139,8 @@ public class Backend {
 
     public static void saveRecords() {
         try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("../testers/OutTestData.txt"));
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("../testers/OutTestData"));
+            // You can replace this with "../testers/TestData"
 
             /*
                 We need to rewrite a good portion of stuff to do this properly and by design.
@@ -164,7 +165,6 @@ public class Backend {
         }
 
             bufferedWriter.close();
-            System.out.println("Bla");
         }
         catch(IOException ex) {
             ex.printStackTrace();
