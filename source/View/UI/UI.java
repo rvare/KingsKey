@@ -46,6 +46,8 @@ public class UI {
         JMenu fileMenu = new JMenu("File");
         JMenuItem newRecordItem = new JMenuItem("New");
         newRecordItem.addActionListener(new NewRecordMenuListener(new Form()));
+        JMenuItem saveRecords = new JMenuItem("Save");
+        saveRecords.addActionListener(new SaveListener());
         JMenu editMenu = new JMenu("Edit");
         JMenuItem preferencesMenu = new JMenuItem("Preferences");
         preferencesMenu.addActionListener(new PreferenceMenuListener());
@@ -56,6 +58,7 @@ public class UI {
         aboutItem.addActionListener(new AboutMenuListener());
         
         fileMenu.add(newRecordItem);
+        fileMenu.add(saveRecords);
         menuBar.add(fileMenu);
         editMenu.add(preferencesMenu);
         editMenu.add(editRecordItem);

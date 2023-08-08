@@ -76,6 +76,14 @@ public class Backend {
         return new ArrayList<String>();
     }
 
+    private static String encryptLine(String line) {
+        byte[] rawData = line.getBytes();
+        for (int i = 0; i < rawData.length; i++) {
+            rawData[i] += 1;
+        }
+        return new String(rawData);
+    }
+
     private String[] parseLine(String unparsedLine) {
         return unparsedLine.split(";");
     }
@@ -127,5 +135,39 @@ public class Backend {
     //updates the data [] after the user inserts a new entry
     public static void updateDatabase(Object [][] newDataObjects) {
         data = newDataObjects;
+    }
+
+    public static void saveRecords() {
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("../testers/OutTestData.txt"));
+
+            /*
+                We need to rewrite a good portion of stuff to do this properly and by design.
+                It would make it a lot less work if we did.
+            */
+
+            // Encryption stuff
+
+            // Writing to file
+            /*
+            for (DataContainer record : userData) {
+                bufferedWriter.write(record.toString());
+            }
+            */
+
+        String line;
+        String encryptedLine;
+        for (int i = 0; i < data.length; i++) {
+                line = String.format("%s;%s;%s;%s\n", (String)data[i][0], (String)data[i][1], (String)data[i][2], (String)data[i][3]);
+                encryptedLine = encryptLine(line);
+                bufferedWriter.write(encryptedLine);
+        }
+
+            bufferedWriter.close();
+            System.out.println("Bla");
+        }
+        catch(IOException ex) {
+            ex.printStackTrace();
+        }
     }
 } // End of Backend class
