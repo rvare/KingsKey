@@ -25,12 +25,10 @@ public class Controller {
         lw.showLogin();
 
         //Backend.getData();
-        Backend backend = Backend.getInstance();
+        /*Backend backend = Backend.getInstance();
         backend.gatherUserData();
-        /*special note: the controller class will have to call Backend.getData(); in the future 
-            to populate the 2D array that resides in the Backend class but for now this is a placeholder*/
         UI gui = new UI();
-        gui.createUI();  
+        gui.createUI(); */
 
         // find out what themes are available
         UIManager.LookAndFeelInfo[] looks = UIManager.getInstalledLookAndFeels();

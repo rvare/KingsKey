@@ -3,8 +3,15 @@ package View.UI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import Model.Backend;
 
 public class LoginWindow extends JFrame {
     public boolean showLogin() {
@@ -19,6 +26,7 @@ class PassDialog extends JDialog {
     private JLabel passwordLabel;
     private JTextField passField;
     private JButton loginButton;
+    private String actualPassword;
 
     public PassDialog(final JFrame parentFrame, boolean modal) {
         super(parentFrame, modal);
@@ -26,6 +34,7 @@ class PassDialog extends JDialog {
         this.makeProgramTitleLabel();
         this.makeLoginField();
         this.makeLoginButton();
+        getActualPassword();
         pack();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -47,8 +56,8 @@ class PassDialog extends JDialog {
         passwordLabel.setFont(new Font("Sans", Font.PLAIN, 16));
         loginPanel.add(passwordLabel);
 
-        JTextField loginField = new JTextField(20);
-        loginPanel.add(loginField);
+        passField = new JTextField(20);
+        loginPanel.add(passField);
 
         JPanel centerPanel = new JPanel();
         centerPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
@@ -67,7 +76,26 @@ class PassDialog extends JDialog {
     private class LoginButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent evt) {
-            dispose();
+            if(passField.getText().equals(actualPassword)) {
+                dispose();
+                Backend backend = Backend.getInstance();
+                backend.gatherUserData();
+                UI gui = new UI();
+                gui.createUI(); 
+            }
         }
+    }//end of LoginButtonListener
+
+    private void getActualPassword() {
+         try {
+            String path = "../testers/authenticationToken"; // testers\\TestData -> May need to use for Windows
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
+            actualPassword = bufferedReader.readLine();
+            bufferedReader.close();
+         }
+         catch(IOException e) {
+            e.printStackTrace();
+            actualPassword = "pass";
+         }
     }
 }
