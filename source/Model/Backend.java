@@ -13,7 +13,7 @@ import javax.crypto.spec.PBEParameterSpec;
 
 public class Backend {
     private ArrayList<DataContainer> userData;
-    private static String dataFilePath = "../testers/out";
+    private static String dataFilePath = "../UserDataFile";
     private static Backend instance;
     private static Object[][] data;
     private static final String[] columnNames = { "Site", "Email", "Username", "password" };
