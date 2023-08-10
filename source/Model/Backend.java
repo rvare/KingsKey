@@ -13,7 +13,7 @@ import javax.crypto.spec.PBEParameterSpec;
 
 public class Backend {
     private ArrayList<DataContainer> userData;
-    private static String dataFilePath = "../testers/EncryptedData2";
+    private static String dataFilePath = "../testers/out";
     private static Backend instance;
     private static Object[][] data;
     private static final String[] columnNames = { "Site", "Email", "Username", "password" };
@@ -36,11 +36,13 @@ public class Backend {
 
     public void gatherUserData() {
         ArrayList<String> decryptedLines;
-        ArrayList<String> encryptedLines = new ArrayList<String>();
-        String temp;
 
         try {
-            decryptedLines = decryptData("password", false);
+            File dataFile = new File(dataFilePath);
+            FileInputStream fileInputStream = new FileInputStream(dataFile);
+
+            decryptedLines = decryptData("password", false, dataFile, fileInputStream);
+            fileInputStream.close();
 
             // Initialize 2D array to hold data for JTable
             int numberOfColumns = decryptedLines.get(0).split(";").length;
@@ -50,72 +52,73 @@ public class Backend {
             for (int i = 0; i < decryptedLines.size(); i++) {
                 data[i] = decryptedLines.get(i).split(";");
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+
+            // decryptedLines = decryptData(encryptedLines);
+            // decryptedLines = encryptedLines;
+            String[] parsedLine;
+            for (String line : decryptedLines) {
+                parsedLine = parseLine(line);
+                userData.add(new DataContainer(parsedLine));
+            }
         }
-
-        // decryptedLines = decryptData(encryptedLines);
-        decryptedLines = encryptedLines;
-        String[] parsedLine;
-
-        for (String line : decryptedLines) {
-            parsedLine = parseLine(line);
-            userData.add(new DataContainer(parsedLine));
+        catch (IOException ioEx) {
+            //ioEx.getMessage();
+            ioEx.printStackTrace();
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
         }
     } // End of gatherUserData
 
     private Cipher makeCipher(String password, boolean encryptMode) {
         try {
-        PBEKeySpec keySpec = new PBEKeySpec(password.toCharArray());
-        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBEWithMD5AndDES");
-        SecretKey key = keyFactory.generateSecret(keySpec);
+            PBEKeySpec keySpec = new PBEKeySpec(password.toCharArray());
+            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBEWithMD5AndDES");
+            SecretKey key = keyFactory.generateSecret(keySpec);
 
-        PBEParameterSpec pbeParamSpec = new PBEParameterSpec(salt, 32);
+            PBEParameterSpec pbeParamSpec = new PBEParameterSpec(salt, 32);
 
-        Cipher cipher = Cipher.getInstance("PBEWithMD5AndDES");
+            Cipher cipher = Cipher.getInstance("PBEWithMD5AndDES");
 
-        if (encryptMode) {
-            cipher.init(Cipher.ENCRYPT_MODE, key, pbeParamSpec);
-        }
-        else {
-            cipher.init(Cipher.DECRYPT_MODE, key, pbeParamSpec);
-        }
+            if (encryptMode) {
+                cipher.init(Cipher.ENCRYPT_MODE, key, pbeParamSpec);
+            }
+            else {
+                cipher.init(Cipher.DECRYPT_MODE, key, pbeParamSpec);
+            }
 
-        return cipher;
+            return cipher;
         }
         catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }
-    }
+    } // End of makeCipher
 
-    private ArrayList<String> decryptData(String password, boolean mode) { // Implement decryption algorithm later
+    private ArrayList<String> decryptData(String password, boolean mode, File dataFile, FileInputStream fileStream) {
         try {
             byte[] encryptedData;
             byte[] decryptedData;
-            File theFile = new File("../testers/out");
-            FileInputStream encryptedFile = new FileInputStream(theFile);
 
             Cipher cipher = makeCipher(password, false);
 
-            encryptedData = new byte[(int)theFile.length()];
-            encryptedFile.read(encryptedData);
-            encryptedFile.close();
+            encryptedData = new byte[(int)dataFile.length()];
+            fileStream.read(encryptedData);
 
             decryptedData = cipher.doFinal(encryptedData);
             
-            String text = new String(decryptedData);
-            String[] textLines = text.split("\n");
+            String decryptedStringData = new String(decryptedData);
+            String[] decryptedLines = decryptedStringData.split("\n");
             
-            return new ArrayList<String>(Arrays.asList(textLines));
+            return new ArrayList<String>(Arrays.asList(decryptedLines));
         }
         catch(Exception ex) {
             ex.printStackTrace();
-            return null;
+            return new ArrayList<String>();
         }
     } // End of decryptData
 
-    private void encryptData(String password, boolean mode) { // Temporary stub
+    private void encryptData(String password, boolean mode) {
         try {
         byte[] decryptedData;
         byte[] encryptedData;
