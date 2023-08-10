@@ -39,10 +39,10 @@ public class Backend {
 
         try {
             File dataFile = new File(dataFilePath);
-            FileInputStream fileInputStream = new FileInputStream(dataFile);
+            FileInputStream fis = new FileInputStream(dataFile);
 
-            decryptedLines = decryptData("password", false, dataFile, fileInputStream);
-            fileInputStream.close();
+            decryptedLines = decryptData("password", false, dataFile, fis);
+            fis.close();
 
             // Initialize 2D array to hold data for JTable
             int numberOfColumns = decryptedLines.get(0).split(";").length;
@@ -118,25 +118,24 @@ public class Backend {
         }
     } // End of decryptData
 
-    private void encryptData(String password, boolean mode) {
+    private void encryptData(String password, boolean mode, File dataFile, FileOutputStream fos) {
         try {
-        byte[] decryptedData;
-        byte[] encryptedData;
-        File outFile = new File("../testers/out");
-        Cipher cipher = makeCipher(password, true);
-        FileOutputStream outStream = new FileOutputStream(outFile);
+            byte[] decryptedData;
+            byte[] encryptedData;
 
-        String line;
-        String dataLines = "";
-        for (int i = 0; i < data.length; i++) {
-                line = String.format("%s;%s;%s;%s\n", (String)data[i][0], (String)data[i][1], (String)data[i][2], (String)data[i][3]);
-                dataLines += line;
-        }
+            Cipher cipher = makeCipher(password, true);
 
-        decryptedData = dataLines.getBytes();
-        encryptedData = cipher.doFinal(decryptedData);
-        outStream.write(encryptedData);
-        outStream.close();
+            String line;
+            String dataLines = "";
+            for (int i = 0; i < data.length; i++) {
+                    line = String.format("%s;%s;%s;%s\n", (String)data[i][0], (String)data[i][1], (String)data[i][2], (String)data[i][3]);
+                    dataLines += line;
+            }
+
+            decryptedData = dataLines.getBytes();
+            encryptedData = cipher.doFinal(decryptedData);
+            fos.write(encryptedData);
+            fos.close();
         }
         catch (Exception ex) {
             ex.printStackTrace();
@@ -208,30 +207,13 @@ public class Backend {
         Backend b = Backend.getInstance();
         try {
             // You can replace this with "../testers/TestData"
+            File dataFile = new File(dataFilePath);
+            FileOutputStream fos = new FileOutputStream(dataFile);
+            b.encryptData("password", true, dataFile, fos);
 
-            /*
-                We need to rewrite a good portion of stuff to do this properly and by design.
-                It would make it a lot less work if we did.
-            */
-
-            // Encryption stuff
-
-            // Writing to file
-            /*
-            for (DataContainer record : userData) {
-                bufferedWriter.write(record.toString());
-            }
-            */
-           File f = new File(dataFilePath);
-        String line;
-        String encryptedLine = "";
-        for (int i = 0; i < data.length; i++) {
-                line = String.format("%s;%s;%s;%s\n", (String)data[i][0], (String)data[i][1], (String)data[i][2], (String)data[i][3]);
-                encryptedLine += line;
         }
-
-        b.encryptData("password", true);
-
+        catch (IOException ioEx) {
+            ioEx.printStackTrace();
         }
         catch(Exception ex) {
             ex.printStackTrace();
