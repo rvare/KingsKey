@@ -17,6 +17,7 @@ public class Backend {
     private static Backend instance;
     private static Object[][] data;
     private static final String[] columnNames = { "Site", "Email", "Username", "password" };
+    private static String masterPassword;
     
     private final byte[] salt = {
         (byte)0x43, (byte)0x76, (byte)0x95, (byte)0xc7,
@@ -41,7 +42,8 @@ public class Backend {
             File dataFile = new File(dataFilePath);
             FileInputStream fis = new FileInputStream(dataFile);
 
-            decryptedLines = decryptData("password", false, dataFile, fis);
+            //decryptedLines = decryptData("password", false, dataFile, fis);
+            decryptedLines = decryptData(masterPassword, false, dataFile, fis);
             fis.close();
 
             // Initialize 2D array to hold data for JTable
@@ -209,8 +211,8 @@ public class Backend {
             // You can replace this with "../testers/TestData"
             File dataFile = new File(dataFilePath);
             FileOutputStream fos = new FileOutputStream(dataFile);
-            b.encryptData("password", true, dataFile, fos);
-
+            //b.encryptData("password", true, dataFile, fos);
+            b.encryptData(masterPassword, true, dataFile, fos);
         }
         catch (IOException ioEx) {
             ioEx.printStackTrace();
@@ -218,5 +220,9 @@ public class Backend {
         catch(Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public void setMasterPassword(String pass) {
+        masterPassword = pass;
     }
 } // End of Backend class

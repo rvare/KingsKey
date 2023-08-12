@@ -14,12 +14,22 @@ import javax.swing.border.EmptyBorder;
 import Model.Backend;
 
 public class LoginWindow extends JFrame {
+    private String plaintextPassword;
     public boolean showLogin() {
         PassDialog p = new PassDialog(this, true);
         p.setVisible(true);
         System.out.println("Returns UI");
         return true;
     }
+
+    public void setPlaintextPassword(String pass) {
+        plaintextPassword = pass;
+    }
+    
+    public String getPlaintextPassword() {
+        return plaintextPassword;
+    }
+
 }
 
 class PassDialog extends JDialog {
@@ -27,14 +37,16 @@ class PassDialog extends JDialog {
     private JTextField passField;
     private JButton loginButton;
     private String actualPassword;
+    private LoginWindow loginWindowReference;
 
-    public PassDialog(final JFrame parentFrame, boolean modal) {
+    public PassDialog(final LoginWindow parentFrame, boolean modal) {
         super(parentFrame, modal);
         this.setTitle("Login");
         this.makeProgramTitleLabel();
         this.makeLoginField();
         this.makeLoginButton();
         getActualPassword();
+        loginWindowReference = parentFrame;
         pack();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -78,10 +90,7 @@ class PassDialog extends JDialog {
         public void actionPerformed(ActionEvent evt) {
             if(passField.getText().equals(actualPassword)) {
                 dispose();
-                Backend backend = Backend.getInstance();
-                backend.gatherUserData();
-                UI gui = new UI();
-                gui.createUI(); 
+                loginWindowReference.setPlaintextPassword(passField.getText());
             }
         }
     }//end of LoginButtonListener
