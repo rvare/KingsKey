@@ -89,8 +89,8 @@ class PassDialog extends JDialog {
         @Override
         public void actionPerformed(ActionEvent evt) {
             if(passField.getText().equals(actualPassword)) {
-                dispose();
                 loginWindowReference.setPlaintextPassword(passField.getText());
+                dispose();
             }
         }
     }//end of LoginButtonListener

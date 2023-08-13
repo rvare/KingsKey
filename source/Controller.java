@@ -25,11 +25,21 @@ public class Controller {
         lw.showLogin();
 
         //Backend.getData();
-        Backend backend = Backend.getInstance();
+        if(lw.getPlaintextPassword() != null) {
+            Backend backend = Backend.getInstance();
+            backend.setMasterPassword(lw.getPlaintextPassword());
+            backend.gatherUserData();
+            UI gui = new UI();
+            gui.createUI();
+        } 
+        else{
+            System.exit(0);
+        }
+        /*Backend backend = Backend.getInstance();
         backend.setMasterPassword(lw.getPlaintextPassword());
         backend.gatherUserData();
         UI gui = new UI();
-        gui.createUI();
+        gui.createUI(); */
 
         // find out what themes are available
         UIManager.LookAndFeelInfo[] looks = UIManager.getInstalledLookAndFeels();
