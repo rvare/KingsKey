@@ -3,3 +3,4 @@
 bin/*
 OutTestData
 UserDataFile
+testers/authenticationToken

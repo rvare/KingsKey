@@ -225,4 +225,8 @@ public class Backend {
     public void setMasterPassword(String pass) {
         masterPassword = pass;
     }
+
+    public String getMasterPassword() {
+        return masterPassword;
+    }
 } // End of Backend class

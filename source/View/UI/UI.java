@@ -53,6 +53,8 @@ public class UI {
         preferencesMenu.addActionListener(new PreferenceMenuListener());
         JMenuItem editRecordItem = new JMenuItem("Edit Record");
         editRecordItem.addActionListener(new EditRecordMenuListener(new Form("EditMode")));
+        JMenuItem changeMasterPassword = new JMenuItem("Change Password");
+        changeMasterPassword.addActionListener(new ChangeMasterPasswordListener());
         JMenu helpMenu = new JMenu("Help");
         JMenuItem aboutItem = new JMenuItem("About");
         aboutItem.addActionListener(new AboutMenuListener());
@@ -62,6 +64,7 @@ public class UI {
         menuBar.add(fileMenu);
         editMenu.add(preferencesMenu);
         editMenu.add(editRecordItem);
+        editMenu.add(changeMasterPassword);
         menuBar.add(editMenu);
         helpMenu.add(aboutItem);
         menuBar.add(helpMenu);
