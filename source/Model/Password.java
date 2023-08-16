@@ -21,7 +21,7 @@ public class Password {
         // Any attempt will result in an OutOfMemoryException.
         long heapMaxSize = Runtime.getRuntime().maxMemory();
 
-        loadDictionary();
+        loadPasswordCheckingResources();
 
         // Get amount of free memory within the heap in bytes. This size will increase
         // after garbage collection and decrease as new objects are created.
@@ -35,16 +35,10 @@ public class Password {
         System.out.println("The generated password is: "+generatedPassword);
         System.out.println("Searching Results Found = :"+dictionary.search(password));
         System.out.println("Searching Results Found = :"+dictionary.search(password2));
+        System.out.println("Searching Results Found = :"+dictionary.search("the"));
         System.out.println("Searching Results Found = :"+dictionary.search("#golden"));
         System.out.println("Searching Results Found = :"+dictionary.search("reckLe$s"));
         System.out.println("Searching Results Found = :" + dictionary.search("vlad&*"));
-
-        /*System.out.println("The generated password is: "+generatedPassword);
-        System.out.println("Searching Results Found = :"+dictionary.contains(password));
-        System.out.println("Searching Results Found = :"+dictionary.contains(password2));
-        System.out.println("Searching Results Found = :"+dictionary.contains("#golden"));
-        System.out.println("Searching Results Found = :"+dictionary.contains("reckLe$s"));
-        System.out.println("Searching Results Found = :" + dictionary.contains("vlad&*"));*/
         
         System.out.println("\nMemory calculations in bytes");
         System.out.println("Total allocated memory: "+heapSize);
@@ -60,10 +54,65 @@ public class Password {
         System.out.println("Entropy calculation: ");
         System.out.println(Password.calculateEntropy(password));
     }
+
+    public static void loadPasswordCheckingResources() {
+        String filepath;
+        long start = System.currentTimeMillis();
+        try{
+            filepath = "../source/Dictionaries/passwords.txt";
+            loadDictionary(filepath);
+        }
+        catch(IOException e){
+            System.out.println("Failed to load passwords.txt");
+        }
+
+        try{
+            filepath = "../source/Dictionaries/eff_large.txt";
+            loadDictionary(filepath);
+        }
+        catch(IOException e){
+            System.out.println("Failed to load eff_large.txt");
+        }     
+        
+        try{
+            filepath = "../source/Dictionaries/english.txt";
+            loadDictionary(filepath);
+        }
+        catch(IOException e){
+            System.out.println("Failed to load english.txt");
+        }
+
+        try{
+            filepath = "../source/Dictionaries/female-names.txt";
+            loadDictionary(filepath);
+        }
+        catch(IOException e){
+            System.out.println("Failed to load female-names.txt");
+        }
+
+        try{
+            filepath = "../source/Dictionaries/male-names.txt";
+            loadDictionary(filepath);
+        }
+        catch(IOException e){
+            System.out.println("Failed to load male-names.txt");
+        }
+
+        try{
+            filepath = "../source/Dictionaries/surnames.txt";
+            loadDictionary(filepath);
+        }
+        catch(IOException e){
+            System.out.println("Failed to load surnames.txt");
+        }
+        long finish = System.currentTimeMillis();
+        long timeElapsed = finish - start; 
+        System.out.println("Loading Resources Time Elapsed: "+ timeElapsed +" ms");
+    }
     
-    private static void loadDictionary() throws IOException {
+    private static void loadDictionary(String filepath) throws IOException {
         //String filepath = "source\\Dictionaries\\passwords.txt";
-        String filepath = "source/Dictionaries/passwords.txt";
+        //String filepath = "source/Dictionaries/passwords.txt";
         FileReader fileReader = new FileReader(filepath);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         
@@ -116,7 +165,6 @@ public class Password {
 
         return password.toString();
     }
-
 
     public static String checkPasswordStrength(String password) {
         int score = 0;
@@ -181,6 +229,15 @@ public class Password {
         BigDecimal roundedEntropy = new BigDecimal(Double.toString(entropy));
         roundedEntropy = roundedEntropy.setScale(2, RoundingMode.HALF_UP);
         return roundedEntropy.doubleValue();
+    }
+
+    public static String isCommonPassword(String password) {
+        if(dictionary.search(password)){
+            return "Yes";
+        }
+        else{
+            return "No";
+        }
     }
 } // End of Password class
 

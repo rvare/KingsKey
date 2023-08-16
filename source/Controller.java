@@ -31,6 +31,7 @@ public class Controller {
             backend.gatherUserData();
             UI gui = new UI();
             gui.createUI();
+            Password.loadPasswordCheckingResources();
         } 
         else{
             System.exit(0);

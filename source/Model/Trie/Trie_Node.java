@@ -33,7 +33,7 @@ public class Trie_Node{
     }
     // Searching
     public boolean search(String Node_key) {
-        System.out.print("Searching the key \"" + Node_key + "\" : ");
+        //System.out.print("Searching the key \"" + Node_key + "\" : ");
 
         Trie_Node Current_Node = this;
 

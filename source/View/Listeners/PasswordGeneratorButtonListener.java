@@ -60,7 +60,9 @@ public class PasswordGeneratorButtonListener implements ActionListener {
         // Panel holds result output label
         JLabel passwordStrengthResults = new JLabel("Password Strength: ?");
         JLabel passwordEntropyResults = new JLabel("Password Entropy: ?");
+        JLabel passwordCommonalityResults = new JLabel("Is the password common?: N/A");
         JLabel hint = new JLabel("Hint:Try to go for at least 60 entropy for a decent password.");
+        resultLabelHolder.add(passwordCommonalityResults);
         resultLabelHolder.add(passwordStrengthResults);
         resultLabelHolder.add(passwordEntropyResults);
         resultLabelHolder.add(hint);
@@ -76,8 +78,10 @@ public class PasswordGeneratorButtonListener implements ActionListener {
             public void actionPerformed(ActionEvent event){
                 String pass = textField.getText();
                 String result = Password.checkPasswordStrength(pass);
+                String isCommonPassword = Password.isCommonPassword(pass);
                 passwordStrengthResults.setText(result);
                 passwordEntropyResults.setText("Password Entropy: "+Password.calculateEntropy(pass));
+                passwordCommonalityResults.setText("Is the password common?: "+isCommonPassword);
             }
         });
 
