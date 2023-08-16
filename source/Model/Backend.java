@@ -10,6 +10,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
+import java.security.*;
 
 public class Backend {
     private ArrayList<DataContainer> userData;
@@ -228,5 +229,33 @@ public class Backend {
 
     public String getMasterPassword() {
         return masterPassword;
+    }
+
+    public String hashPassword(String password) {
+        StringBuilder hashValueHex = new StringBuilder();
+
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = messageDigest.digest(password.getBytes());
+            hashValueHex = hashToBytes(hashBytes);
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return hashValueHex.toString();
+    }
+
+    public StringBuilder hashToBytes(byte[] hashBytes) {
+        StringBuilder hexString = new StringBuilder(2 * hashBytes.length);
+        String hex;
+        for (Byte b : hashBytes) {
+            hex = Integer.toHexString(0xff & b);
+            if (hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+        return hexString;
     }
 } // End of Backend class

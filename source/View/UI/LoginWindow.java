@@ -88,7 +88,11 @@ class PassDialog extends JDialog {
     private class LoginButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent evt) {
-            if(passField.getText().equals(actualPassword)) {
+            // call hashing function
+            Backend backend = Backend.getInstance();
+            String hashedPassword = backend.hashPassword(passField.getText());
+
+            if (hashedPassword.equals(actualPassword)) {
                 loginWindowReference.setPlaintextPassword(passField.getText());
                 dispose();
             }
@@ -97,7 +101,7 @@ class PassDialog extends JDialog {
 
     private void getActualPassword() {
          try {
-            String path = "../testers/authenticationToken"; // testers\\TestData -> May need to use for Windows
+            String path = "../testers/authenticationTokenHash"; // testers\\TestData -> May need to use for Windows
             BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
             actualPassword = bufferedReader.readLine();
             bufferedReader.close();
