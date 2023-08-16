@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Model.Backend;
+
 public class DeleteRowButton extends JButton implements ActionListener{
     
     public DeleteRowButton() {
@@ -32,6 +34,7 @@ public class DeleteRowButton extends JButton implements ActionListener{
         yesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 deleteRow();
+                UI.getMainFrame().requestFocus();
                 frame.dispose();
             }
         });
@@ -53,7 +56,20 @@ public class DeleteRowButton extends JButton implements ActionListener{
     
     private void deleteRow() {
         int currRow = UI.getDataTable().getSelectedRow();
-        ((DefaultTableModel)UI.getDataTable().getModel()).removeRow(currRow);
+        DefaultTableModel model = (DefaultTableModel) UI.getDataTable().getModel();
+        model.removeRow(currRow);
+        updateDatabase(model);
     }
 
-}
+    private void updateDatabase(DefaultTableModel model) {
+        // saving changes to backend Object [][] data
+        int nRow = model.getRowCount(), nCol = model.getColumnCount();
+        Object[][] tableData = new Object[nRow][nCol];
+        for (int i = 0; i < nRow; i++) {
+            for (int j = 0; j < nCol; j++) {
+                tableData[i][j] = model.getValueAt(i, j);
+            }
+        }
+        Backend.updateDatabase(tableData);
+    }
+}// end of DeleteRowButton class

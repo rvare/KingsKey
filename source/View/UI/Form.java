@@ -99,19 +99,11 @@ public class Form extends JFrame {
             row[1] = accountField.getText();
             row[2] = emailField.getText();
             row[3] = passwordField.getText();
+            DefaultTableModel model = (DefaultTableModel) UI.getDataTable().getModel();
             
             if (mode.equals("New")) { // Create new record
-                DefaultTableModel model = (DefaultTableModel) UI.getDataTable().getModel();
                 model.addRow(new Object [] {row[0], row[1], row [2], row[3]});
-                //saving changes to backend Object [][] data
-                int nRow = model.getRowCount(), nCol = model.getColumnCount();
-                Object[][] tableData = new Object[nRow][nCol];
-                for (int i = 0 ; i < nRow ; i++) { 
-                    for (int j = 0 ; j < nCol ; j++) {
-                        tableData[i][j] = model.getValueAt(i,j);
-                    }
-                }
-                Backend.updateDatabase(tableData);
+                updateDatabase(model);
                 clearForm();
             }
             else { // Write to the table
@@ -119,6 +111,7 @@ public class Form extends JFrame {
                 dataTable.setValueAt(row[1], currRow, 1);
                 dataTable.setValueAt(row[2], currRow, 2);
                 dataTable.setValueAt(row[3], currRow, 3);
+                updateDatabase(model);
             }
             
             //UI.getContentDisplayPanel().repaint();
@@ -131,6 +124,18 @@ public class Form extends JFrame {
         accountField.setText("");
         emailField.setText("");
         passwordField.setText("");
+    }
+
+    private void updateDatabase(DefaultTableModel model) {
+        // saving changes to backend Object [][] data
+        int nRow = model.getRowCount(), nCol = model.getColumnCount();
+        Object[][] tableData = new Object[nRow][nCol];
+        for (int i = 0; i < nRow; i++) {
+            for (int j = 0; j < nCol; j++) {
+                tableData[i][j] = model.getValueAt(i, j);
+            }
+        }
+        Backend.updateDatabase(tableData);
     }
     
     private class CancelButtonListener implements ActionListener {
