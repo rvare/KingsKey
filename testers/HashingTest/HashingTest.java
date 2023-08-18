@@ -4,7 +4,7 @@ import java.security.*;
 
 public class HashingTest {
     public static MessageDigest md;
-    public static String message = "SomeStringWithEvenMoreTextwow";
+    public static String message = "password";
     public static void main(String[] args) {
         try {
             md = MessageDigest.getInstance("SHA-256");
