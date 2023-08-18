@@ -42,14 +42,14 @@ class SetUpDialog extends JDialog {
         this.makeConfirmButton();
 
         pack();
-        setSize(500, 200);
+        setSize(500, 150);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     private void makeDescription() {
         JLabel description = new JLabel("Enter in your master password", SwingConstants.CENTER);
-        description.setBorder(new EmptyBorder(10, 100, 20, 100));
+        description.setBorder(new EmptyBorder(10, 100, 10, 100));
         description.setFont(new Font("Sans", Font.PLAIN, 16));
         this.add(description, BorderLayout.NORTH);
     }

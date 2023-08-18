@@ -18,7 +18,6 @@ public class LoginWindow extends JFrame {
     public boolean showLogin() {
         PassDialog p = new PassDialog(this, true);
         p.setVisible(true);
-        System.out.println("Returns UI");
         return true;
     }
 
