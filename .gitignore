@@ -5,3 +5,4 @@ OutTestData
 UserDataFile
 testers/authenticationToken
 testers/authenticationTokenHash
+hashToken

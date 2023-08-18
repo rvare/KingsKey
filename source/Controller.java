@@ -5,9 +5,10 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
-
 import java.awt.Color;
 import java.awt.Insets;
+import java.io.*;
+import java.util.*;
 
 import Model.*;
 import Model.Trie.*;
@@ -17,9 +18,16 @@ public class Controller {
     // May contain certain global constants needed.
     // Have constant that represents data file directory/path
     public static void main(String[] args) {
+        File hashToken = new File("./hashToke");
 
         initializeTheme(defaultTheme);
         //setDarkNimbusTheme();
+
+        if (!hashToken.exists() && !hashToken.isFile()) {
+            SetUpWindow setUp = new SetUpWindow();
+
+            setUp.firstTimeSetup();
+        }
 
         LoginWindow lw = new LoginWindow();
         lw.showLogin();
@@ -33,7 +41,7 @@ public class Controller {
             gui.createUI();
             Password.loadPasswordCheckingResources();
         } 
-        else{
+        else {
             System.exit(0);
         }
         /*Backend backend = Backend.getInstance();

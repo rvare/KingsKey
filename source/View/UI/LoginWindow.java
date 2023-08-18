@@ -101,7 +101,8 @@ class PassDialog extends JDialog {
 
     private void getActualPassword() {
          try {
-            String path = "../testers/authenticationTokenHash"; // testers\\TestData -> May need to use for Windows
+            //String path = "../testers/authenticationTokenHash"; // testers\\TestData -> May need to use for Windows
+            String path = "../hashToken";
             BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
             actualPassword = bufferedReader.readLine();
             bufferedReader.close();
