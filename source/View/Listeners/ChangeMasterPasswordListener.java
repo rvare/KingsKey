@@ -82,9 +82,10 @@ public class ChangeMasterPasswordListener implements ActionListener{
         }
     }
 
+    // Fix this !!!!
     private void updateAuthenticationToken(String updatedPassword) {
         try {
-            File authToken = new File("../testers/authenticationTokenHash");
+            File authToken = new File("./hashToken");
             FileOutputStream fos = new FileOutputStream(authToken);
             Backend backend = Backend.getInstance();
             byte[] hashedPassword = backend.hashPassword(updatedPassword).getBytes();
