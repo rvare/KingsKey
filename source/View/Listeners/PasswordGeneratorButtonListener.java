@@ -33,7 +33,7 @@ public class PasswordGeneratorButtonListener implements ActionListener {
     public void createGeneratePasswordUI() {
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        JPanel generatePassJPanel = new JPanel();
+        /*JPanel generatePassJPanel = new JPanel();
         JLabel placeholder = new JLabel("password output");
         JButton generate = new JButton("Generate Password");
 
@@ -47,7 +47,7 @@ public class PasswordGeneratorButtonListener implements ActionListener {
                 Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
                 clipboard.setContents(selectedString, null);
             }
-        });
+        });*/
 
         // Creating panels for password testing layout
         JPanel resultLabelHolder = new JPanel();
@@ -97,7 +97,7 @@ public class PasswordGeneratorButtonListener implements ActionListener {
             }
         });
         passwordTestPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        generatePassJPanel.add(placeholder);
+        /*generatePassJPanel.add(placeholder);
         generatePassJPanel.add(generate);
         generatePassJPanel.setFocusable(true);
         //allows textbox to be deselected when clicking this area
@@ -108,7 +108,7 @@ public class PasswordGeneratorButtonListener implements ActionListener {
         });
 
         generatePassJPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        panel.add(generatePassJPanel);
+        panel.add(generatePassJPanel);*/
         panel.add(passwordTestPanel);
         UI.getContentDisplayPanel().add(panel);
     } // End of generatePasswordUI

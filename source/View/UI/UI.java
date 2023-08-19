@@ -44,7 +44,7 @@ public class UI {
         // Creating small menu bar
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
-        JMenuItem newRecordItem = new JMenuItem("New");
+        JMenuItem newRecordItem = new JMenuItem("New record");
         newRecordItem.addActionListener(new NewRecordMenuListener(new Form()));
         JMenuItem saveRecords = new JMenuItem("Save");
         saveRecords.addActionListener(new SaveListener());
@@ -74,18 +74,18 @@ public class UI {
         firstRow = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
 
         JButton getRecordTableButton = new JButton("Records");
-        JButton passwordGeneratorButton = new JButton("Password Generator");
+        JButton passwordTesterButton = new JButton("Password Tester");
         JButton copyButton = new JButton("Copy to Clipboard");
         deleteRowButton = new DeleteRowButton();
         // Copy.addActionListener(new CopyToClipBoard Listener(dataTable));
         firstRow.add(getRecordTableButton);
-        firstRow.add(passwordGeneratorButton);
+        firstRow.add(passwordTesterButton);
         firstRow.add(copyButton);
         firstRow.add(deleteRowButton);
         deleteRowButton.setVisible(false);
 
         // Adding event listeners
-        passwordGeneratorButton.addActionListener(new PasswordGeneratorButtonListener());
+        passwordTesterButton.addActionListener(new PasswordGeneratorButtonListener());
         getRecordTableButton.addActionListener(new RecordsTableListener());
 
         optionsMenu.add(firstRow);
