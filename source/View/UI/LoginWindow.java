@@ -89,6 +89,7 @@ class PassDialog extends JDialog {
         public void actionPerformed(ActionEvent evt) {
             // call hashing function
             Backend backend = Backend.getInstance();
+            backend.setMasterPassword(passField.getText());
             String hashedPassword = backend.hashPassword(passField.getText());
 
             if (hashedPassword.equals(actualPassword)) {
