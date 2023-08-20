@@ -18,7 +18,6 @@ public class LoginWindow extends JFrame {
     public boolean showLogin() {
         PassDialog p = new PassDialog(this, true);
         p.setVisible(true);
-        System.out.println("Returns UI");
         return true;
     }
 
@@ -90,6 +89,7 @@ class PassDialog extends JDialog {
         public void actionPerformed(ActionEvent evt) {
             // call hashing function
             Backend backend = Backend.getInstance();
+            backend.setMasterPassword(passField.getText());
             String hashedPassword = backend.hashPassword(passField.getText());
 
             if (hashedPassword.equals(actualPassword)) {
@@ -101,7 +101,8 @@ class PassDialog extends JDialog {
 
     private void getActualPassword() {
          try {
-            String path = "../testers/authenticationTokenHash"; // testers\\TestData -> May need to use for Windows
+            //String path = "../testers/authenticationTokenHash"; // testers\\TestData -> May need to use for Windows
+            String path = "../hashToken";
             BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
             actualPassword = bufferedReader.readLine();
             bufferedReader.close();
