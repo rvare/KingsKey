@@ -14,12 +14,11 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import Model.Password;
 import View.UI.*;
-
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 public class PreferenceMenuListener implements ActionListener {
     //private static JLabel currentTheme;
@@ -69,7 +68,7 @@ public class PreferenceMenuListener implements ActionListener {
 
         JButton applyButton = new JButton("Apply");
         applyButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 String selectedTheme = themes.getSelection().getActionCommand();
                 setTheme(selectedTheme);
                 currentTheme.setText(getTheme());
@@ -109,16 +108,16 @@ public class PreferenceMenuListener implements ActionListener {
             //JOptionPane.PLAIN_MESSAGE);
         themePanel.setVisible(true);
         preferenceFrame.setVisible(true);
-    }//end of action performed method
+    } // End of action performed method
 
     private void setTheme(String selectedTheme) {
-        try{
+        try {
             UIManager.setLookAndFeel(selectedTheme);
             SwingUtilities.updateComponentTreeUI(UI.getMainFrame());
         }
-        catch (Exception e) {
+        catch (Exception ex) {
             //Themes.setDarkNimbusTheme();
-            e.printStackTrace();
+            ex.printStackTrace();
             //Themes.setDarkNimbusTheme();
         }
     }

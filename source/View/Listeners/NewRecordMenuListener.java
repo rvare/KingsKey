@@ -1,7 +1,5 @@
 package View.Listeners;
 
-//import View.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -11,6 +9,7 @@ import java.awt.*;
 
 public class NewRecordMenuListener implements ActionListener {
     private JFrame frame;
+
     public NewRecordMenuListener(JFrame f) {
         frame = f;
     }

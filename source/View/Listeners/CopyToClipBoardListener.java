@@ -11,8 +11,9 @@ import View.UI.ErrorMessageWindow;
 
 public class CopyToClipBoardListener implements ActionListener {
     private JTable table;
-    public CopyToClipBoardListener(JTable t) {
-        table = t;
+
+    public CopyToClipBoardListener(final JTable originalTable) {
+        table = originalTable;
     }
 
     public void actionPerformed(ActionEvent evt) {
@@ -25,24 +26,23 @@ public class CopyToClipBoardListener implements ActionListener {
             Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
             clipboard.setContents(selectedString, selectedString);
         }
-        catch(IndexOutOfBoundsException e) {
+        catch(IndexOutOfBoundsException outOfBoundsEx) {
             //nothingSelectedErrorMessage();
             ErrorMessageWindow.makeMessage("No item selected. Please select an item.");
         }
-        catch(Exception e) {
-            e.printStackTrace();
+        catch(Exception ex) {
+            ex.printStackTrace();
         }
-        
-    }
+    } // End of actionPerformed
 
     public static void nothingSelectedErrorMessage() {
-        JFrame frame = new JFrame();
-        frame.setResizable(true);
-        frame.setSize(350,100);
-        frame.setLocationRelativeTo(null);
+        JFrame errorFrame = new JFrame();
+        errorFrame.setResizable(true);
+        errorFrame.setSize(350, 100);
+        errorFrame.setLocationRelativeTo(null);
         JLabel label = new JLabel("Error: No item selected. Please select an item.");
         label.setHorizontalAlignment(SwingConstants.CENTER);
-        frame.getContentPane().add(label);
-        frame.setVisible(true);
+        errorFrame.getContentPane().add(label);
+        errorFrame.setVisible(true);
     }
 } // End of CopyToClipBoarListener class

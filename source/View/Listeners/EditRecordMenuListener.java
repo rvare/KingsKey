@@ -1,7 +1,5 @@
 package View.Listeners;
 
-import View.UI.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -9,13 +7,14 @@ import javax.swing.JOptionPane;
 import javax.swing.*;
 import java.awt.*;
 
+import View.UI.*;
 import View.UI.ErrorMessageWindow;
 
 public class EditRecordMenuListener implements ActionListener {
     private Form frame;
 
-    public EditRecordMenuListener(Form f) {
-        frame = f;
+    public EditRecordMenuListener(final Form form) {
+        frame = form;
     }
 
     public void actionPerformed(ActionEvent evt) {
@@ -23,12 +22,12 @@ public class EditRecordMenuListener implements ActionListener {
             frame.getTableInfo();
             frame.setVisible(true);
         }
-        catch (IndexOutOfBoundsException e) {
+        catch (IndexOutOfBoundsException outOfBoundsEx) {
             //CopyToClipBoardListener.nothingSelectedErrorMessage();
             ErrorMessageWindow.makeMessage("No item selected. Please select an item to edit.");
         }
-        catch (Exception e) {
-            e.printStackTrace();
+        catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 } // End of EditRecordMenuListener class
