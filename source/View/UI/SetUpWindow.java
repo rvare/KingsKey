@@ -29,7 +29,7 @@ public class SetUpWindow extends JFrame {
     public String getPassword() {
         return this.password;
     }
-}
+} // End of SetUpWindow
 
 class SetUpDialog extends JDialog {
     private JTextField passwordTextField;
@@ -45,7 +45,7 @@ class SetUpDialog extends JDialog {
         setSize(500, 150);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    }
+    } // End of Constructor
 
     private void makeDescription() {
         JLabel description = new JLabel("Enter in your master password", SwingConstants.CENTER);
@@ -72,7 +72,7 @@ class SetUpDialog extends JDialog {
         fieldPanel.add(passwordTextPanel);
 
         this.add(fieldPanel, BorderLayout.CENTER);
-    }
+    } // End of makePasswordField
 
     private void makeConfirmButton() {
         JButton confirmButton = new JButton("Confirm");
@@ -102,5 +102,5 @@ class SetUpDialog extends JDialog {
 
             dispose();
         }
-    }
-}
+    } // End of ConfirmationButtonListener
+} // End of SetUpDialog

@@ -52,4 +52,14 @@ public class DataContainer {
     public String toString() { // For testing purposes
         return String.format("%s;%s;%s;%s", websiteName, accountName, userEmail, userPassword);
     }
+
+    public Object[] returnObjectRow() {
+        Object[] objArr = new Object[4];
+        objArr[0] = (Object)this.websiteName;
+        objArr[1] = (Object)this.accountName;
+        objArr[2] = (Object)this.userEmail;
+        objArr[3] = (Object)this.userPassword;
+
+        return objArr;
+    }
 } // End of DataContainer class

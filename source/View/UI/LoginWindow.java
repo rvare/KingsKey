@@ -7,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -16,20 +15,19 @@ import Model.Backend;
 public class LoginWindow extends JFrame {
     private String plaintextPassword;
     public boolean showLogin() {
-        PassDialog p = new PassDialog(this, true);
-        p.setVisible(true);
+        PassDialog passwordDialog = new PassDialog(this, true);
+        passwordDialog.setVisible(true);
         return true;
     }
 
-    public void setPlaintextPassword(String pass) {
-        plaintextPassword = pass;
+    public void setPlaintextPassword(String password) {
+        plaintextPassword = password;
     }
     
     public String getPlaintextPassword() {
         return plaintextPassword;
     }
-
-}
+} // End of LoginWindow
 
 class PassDialog extends JDialog {
     private JLabel passwordLabel;
@@ -49,7 +47,7 @@ class PassDialog extends JDialog {
         pack();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    }
+    } // End of Constructor
 
     private void makeProgramTitleLabel() {
         JLabel programTitle = new JLabel("Kings Key", SwingConstants.CENTER);
@@ -75,7 +73,7 @@ class PassDialog extends JDialog {
         centerPanel.add(loginPanel);
 
         this.add(centerPanel);
-    }
+    } // End of makeLoginField
 
     private void makeLoginButton() {
         JButton loginButton = new JButton("Login");
@@ -97,19 +95,19 @@ class PassDialog extends JDialog {
                 dispose();
             }
         }
-    }//end of LoginButtonListener
+    }// End of LoginButtonListener
 
     private void getActualPassword() {
          try {
             //String path = "../testers/authenticationTokenHash"; // testers\\TestData -> May need to use for Windows
-            String path = "../hashToken";
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
+            String filePath = "../hashToken";
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
             actualPassword = bufferedReader.readLine();
             bufferedReader.close();
          }
-         catch(IOException e) {
-            e.printStackTrace();
+         catch(IOException ioEx) {
+            ioEx.printStackTrace();
             actualPassword = "pass";
          }
-    }
-}
+    } // End of getActualPassword
+} // End of PassDialog
