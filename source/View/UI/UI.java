@@ -33,7 +33,8 @@ public class UI {
         mainFrame = new JFrame();
         mainFrame.setTitle("Kings Key");
 
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        mainFrame.addWindowListener(new WindowClosingListener());
         mainFrame.setSize(1000, 600);
         mainFrame.setLocationRelativeTo(null);
         

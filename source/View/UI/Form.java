@@ -104,6 +104,7 @@ public class Form extends JFrame {
             if (mode.equals("New")) { // Create new record
                 model.addRow(new Object [] {row[0], row[1], row [2], row[3]});
                 updateDatabase(model);
+                Backend.setBooleanUnsavedChanges(true);
                 clearForm();
             }
             else { // Write to the table
@@ -112,6 +113,7 @@ public class Form extends JFrame {
                 dataTable.setValueAt(row[2], currRow, 2);
                 dataTable.setValueAt(row[3], currRow, 3);
                 updateDatabase(model);
+                Backend.setBooleanUnsavedChanges(true);
             }
             
             //UI.getContentDisplayPanel().repaint();

@@ -19,6 +19,7 @@ public class Backend {
     private static Object[][] data;
     private static final String[] columnNames = { "Site", "Email", "Username", "password" };
     private static String masterPassword;
+    private static boolean unsavedChanges = false;
     
     private final byte[] salt = {
         (byte)0x43, (byte)0x76, (byte)0x95, (byte)0xc7,
@@ -214,6 +215,7 @@ public class Backend {
             FileOutputStream fos = new FileOutputStream(dataFile);
             //b.encryptData("password", true, dataFile, fos);
             b.encryptData(masterPassword, true, dataFile, fos);
+            setBooleanUnsavedChanges(false);
         }
         catch (IOException ioEx) {
             ioEx.printStackTrace();
@@ -257,5 +259,13 @@ public class Backend {
             hexString.append(hex);
         }
         return hexString;
+    }
+
+    public static void setBooleanUnsavedChanges(boolean status) {
+        unsavedChanges = status;
+    } 
+
+    public static boolean unsavedChangeExists() {
+        return unsavedChanges;
     }
 } // End of Backend class

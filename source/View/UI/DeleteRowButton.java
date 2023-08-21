@@ -59,6 +59,7 @@ public class DeleteRowButton extends JButton implements ActionListener{
         DefaultTableModel model = (DefaultTableModel) UI.getDataTable().getModel();
         model.removeRow(currRow);
         updateDatabase(model);
+        Backend.setBooleanUnsavedChanges(true);
     }
 
     private void updateDatabase(DefaultTableModel model) {
