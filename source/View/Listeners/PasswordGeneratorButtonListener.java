@@ -5,6 +5,10 @@ import Model.*;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
@@ -55,21 +59,30 @@ public class PasswordGeneratorButtonListener implements ActionListener {
         resultLabelHolder.setAlignmentX(Component.LEFT_ALIGNMENT);
         JPanel textBoxAndButtonHolder = new JPanel();
         JPanel passwordTestPanel = new JPanel();
-        passwordTestPanel.setLayout(new BoxLayout(passwordTestPanel, BoxLayout.Y_AXIS));
-        
+        //passwordTestPanel.setLayout(new BoxLayout(passwordTestPanel, BoxLayout.Y_AXIS));
+        passwordTestPanel.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+
         // Panel holds result output label
         JLabel passwordStrengthResults = new JLabel("Password Strength: ?");
+        passwordStrengthResults.setFont(passwordStrengthResults.getFont().deriveFont(20.0f));
         JLabel passwordEntropyResults = new JLabel("Password Entropy: ?");
+        passwordEntropyResults.setFont(passwordEntropyResults.getFont().deriveFont(20.0f));
         JLabel passwordCommonalityResults = new JLabel("Is the password common?: N/A");
+        passwordCommonalityResults.setFont(passwordCommonalityResults.getFont().deriveFont(20.0f));
         JLabel hint = new JLabel("Hint:Try to go for at least 60 entropy for a decent password.");
+        hint.setFont(hint.getFont().deriveFont(20.0f));
         resultLabelHolder.add(passwordCommonalityResults);
         resultLabelHolder.add(passwordStrengthResults);
         resultLabelHolder.add(passwordEntropyResults);
         resultLabelHolder.add(hint);
         
         // Panel holds textbox and button
-        HintTextField textField = new HintTextField("Enter Password", 20);
+        HintTextField textField = new HintTextField("Enter Password", 40);
+        textField.setPreferredSize(new Dimension(700, 35));
+        textField.setFont(textField.getFont().deriveFont (15.0f));
         JButton testPasswordButton = new JButton("Test Password");
+        testPasswordButton.setFont(testPasswordButton.getFont().deriveFont(15.0f));
         textBoxAndButtonHolder.add(textField);
         textBoxAndButtonHolder.add(testPasswordButton);
 
@@ -88,8 +101,12 @@ public class PasswordGeneratorButtonListener implements ActionListener {
         passwordTestPanel.setFocusable(true);
         
         // Adding everything to a parent panel
-        passwordTestPanel.add(resultLabelHolder);
-        passwordTestPanel.add(textBoxAndButtonHolder);
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 0;
+        passwordTestPanel.add(resultLabelHolder, c);
+        c.gridy = 1;
+        passwordTestPanel.add(textBoxAndButtonHolder, c);
         //allows textbox to be deselected when clicking this area
         passwordTestPanel.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
