@@ -22,6 +22,23 @@ The following are the coding style rules and coding standards used for this proj
 
 ## Examples
 
+### Try-Catch
+
+```java
+try {
+    // Some dangerous stuff
+}
+catch (SpecificException descriptiveName) {
+    // Stuff
+}
+catch (MoreGeneralException descritptiveName) {
+    // Stuff
+}
+finally {
+    // Stuff
+}
+```
+
 ### Switch Statements
 
 ```java

@@ -8,12 +8,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class NewRecordMenuListener implements ActionListener {
-    private JFrame frame;
+    private JFrame newRecordFrame;
 
-    public NewRecordMenuListener(JFrame f) {
-        frame = f;
+    public NewRecordMenuListener(final JFrame oriFrame) {
+        newRecordFrame = oriFrame;
     }
     public void actionPerformed(ActionEvent evt) {
-        frame.setVisible(true);
+        newRecordFrame.setVisible(true);
     }
 } // End of NewRecordMenuListener class

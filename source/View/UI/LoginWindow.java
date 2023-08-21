@@ -95,7 +95,7 @@ class PassDialog extends JDialog {
                 dispose();
             }
         }
-    }// End of LoginButtonListener
+    } // End of LoginButtonListener
 
     private void getActualPassword() {
          try {

@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Model.Backend;
 
-public class DeleteRowButton extends JButton implements ActionListener{
+public class DeleteRowButton extends JButton implements ActionListener {
     
     public DeleteRowButton() {
         super("Delete row");
@@ -21,38 +21,38 @@ public class DeleteRowButton extends JButton implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent event) {
-        JFrame frame = new JFrame("Confirm");
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(240, 100);
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
+        JFrame confirmationFrame = new JFrame("Confirm");
+        confirmationFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        confirmationFrame.setSize(240, 100);
+        confirmationFrame.setLocationRelativeTo(null);
+        confirmationFrame.setResizable(false);
         JLabel question = new JLabel("Are you sure you want to delete row?");
         question.setBorder(new EmptyBorder(10, 15, 0, 0));
         JPanel buttonPanel = new JPanel();
 
         JButton yesButton = new JButton("Yes");
         yesButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent evt) {
                 deleteRow();
                 UI.getMainFrame().requestFocus();
-                frame.dispose();
+                confirmationFrame.dispose();
             }
         });
 
         JButton noButton = new JButton("No");
         noButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                frame.dispose();
+            public void actionPerformed(ActionEvent evt) {
+                confirmationFrame.dispose();
             }
         });
 
         buttonPanel.add(yesButton);
         buttonPanel.add(noButton);
 
-        frame.getContentPane().add(BorderLayout.NORTH, question);
-        frame.getContentPane().add(BorderLayout.SOUTH, buttonPanel);
-        frame.setVisible(true);
-    }
+        confirmationFrame.getContentPane().add(BorderLayout.NORTH, question);
+        confirmationFrame.getContentPane().add(BorderLayout.SOUTH, buttonPanel);
+        confirmationFrame.setVisible(true);
+    } // End of actionPerformed
     
     private void deleteRow() {
         int currRow = UI.getDataTable().getSelectedRow();
@@ -73,4 +73,4 @@ public class DeleteRowButton extends JButton implements ActionListener{
         }
         Backend.updateDatabase(tableData);
     }
-}// end of DeleteRowButton class
+}// End of DeleteRowButton class

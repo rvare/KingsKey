@@ -21,7 +21,7 @@ public class Controller {
         File hashToken = new File("../hashToken");
         Backend backend = Backend.getInstance();
 
-        //initializeTheme(defaultTheme);
+        initializeTheme(defaultTheme);
         //setDarkNimbusTheme();
 
         if (!hashToken.exists() && !hashToken.isFile()) {
@@ -29,12 +29,12 @@ public class Controller {
             setUp.firstTimeSetup();
         }
 
-        LoginWindow lw = new LoginWindow();
-        lw.showLogin();
+        LoginWindow loginWindow = new LoginWindow();
+        loginWindow.showLogin();
 
         //Backend.getData();
-        if (lw.getPlaintextPassword() != null) {
-            backend.setMasterPassword(lw.getPlaintextPassword());
+        if (loginWindow.getPlaintextPassword() != null) {
+            backend.setMasterPassword(loginWindow.getPlaintextPassword());
             backend.gatherUserData();
             UI gui = new UI();
             gui.createUI();
@@ -57,12 +57,12 @@ public class Controller {
         try {
             UIManager.setLookAndFeel(theme);
         }
-        catch (Exception e) {
+        catch (Exception ex) {
             System.out.println("Look and Feel not set");
         }
     }
 
-    private static void setDarkNimbusTheme (){
+    private static void setDarkNimbusTheme () {
         // Dark LAF
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
@@ -93,7 +93,8 @@ public class Controller {
             UIManager.put("nimbusRed", new Color(169, 46, 34));*/
             
             //SwingUtilities.updateComponentTreeUI(this);
-        } catch (UnsupportedLookAndFeelException exc) {
+        }
+        catch (UnsupportedLookAndFeelException exc) {
             System.err.println("Nimbus: Unsupported Look and feel!");
         }
     } // End of setDarkNimbusTheme

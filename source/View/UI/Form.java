@@ -12,6 +12,7 @@ import java.awt.*;
 public class Form extends JFrame {
     private JPanel gridPanel;
     private JPanel buttonPanel;
+
     private JTable dataTable;
     
     private JTextField passwordField;
@@ -39,7 +40,7 @@ public class Form extends JFrame {
         mode = "New";
     }
     
-    public Form(String modeType) { // dummy is used to call this constructor. Does nothing. Will find a better solution
+    public Form(final String modeType) { // dummy is used to call this constructor. Does nothing. Will find a better solution
         this(); // Call the default constructor
         mode = modeType;
     }

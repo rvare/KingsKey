@@ -65,6 +65,9 @@ public class Backend {
                 userData.add(new DataContainer(parsedLine));
             }
         }
+        catch (FileNotFoundException fileNotFoundEx) {
+            fileNotFoundEx.printStackTrace();
+        }
         catch (IOException ioEx) {
             //ioEx.getMessage();
             ioEx.printStackTrace();
@@ -74,7 +77,7 @@ public class Backend {
         }
     } // End of gatherUserData
 
-    private Cipher makeCipher(String password, boolean encryptMode) {
+    private Cipher makeCipher(final String password, final boolean encryptMode) {
         try {
             PBEKeySpec keySpec = new PBEKeySpec(password.toCharArray());
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBEWithMD5AndDES");
@@ -99,7 +102,7 @@ public class Backend {
         }
     } // End of makeCipher
 
-    private ArrayList<String> decryptData(String password, boolean mode, File dataFile, FileInputStream fileStream) {
+    private ArrayList<String> decryptData(final String password, final boolean mode, final File dataFile, final FileInputStream fileStream) {
         try {
             byte[] encryptedData;
             byte[] decryptedData;
@@ -122,7 +125,7 @@ public class Backend {
         }
     } // End of decryptData
 
-    private void encryptData(String password, boolean mode, File dataFile, FileOutputStream fos) {
+    private void encryptData(final String password, final boolean mode, final File dataFile, final FileOutputStream fos) {
         try {
             byte[] decryptedData;
             byte[] encryptedData;
@@ -154,11 +157,11 @@ public class Backend {
         return new String(rawData);
     }
 
-    private String[] parseLine(String unparsedLine) {
+    private String[] parseLine(final String unparsedLine) {
         return unparsedLine.split(";");
     }
 
-    public DataContainer sendData(int index) {
+    public DataContainer sendData(final int index) {
         return userData.get(index);
     }
 
@@ -189,8 +192,8 @@ public class Backend {
             for (int i = 0; i < list.size(); i++) {
                 data[i] = list.get(i).split(";");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     } // End of getData
 
@@ -208,13 +211,13 @@ public class Backend {
     }
 
     public static void saveRecords() {
-        Backend b = Backend.getInstance();
+        Backend backend = Backend.getInstance();
         try {
             // You can replace this with "../testers/TestData"
             File dataFile = new File(dataFilePath);
             FileOutputStream fos = new FileOutputStream(dataFile);
             //b.encryptData("password", true, dataFile, fos);
-            b.encryptData(masterPassword, true, dataFile, fos);
+            backend.encryptData(masterPassword, true, dataFile, fos);
             setBooleanUnsavedChanges(false);
         }
         catch (IOException ioEx) {
@@ -223,9 +226,9 @@ public class Backend {
         catch(Exception ex) {
             ex.printStackTrace();
         }
-    }
+    } // End of saveRecords
 
-    public void setMasterPassword(String pass) {
+    public void setMasterPassword(final String pass) {
         masterPassword = pass;
     }
 
@@ -233,7 +236,7 @@ public class Backend {
         return masterPassword;
     }
 
-    public String hashPassword(String password) {
+    public String hashPassword(final String password) {
         StringBuilder hashValueHex = new StringBuilder();
 
         try {
@@ -248,7 +251,7 @@ public class Backend {
         return hashValueHex.toString();
     }
 
-    public StringBuilder hashToBytes(byte[] hashBytes) {
+    public StringBuilder hashToBytes(final byte[] hashBytes) {
         StringBuilder hexString = new StringBuilder(2 * hashBytes.length);
         String hex;
         for (Byte b : hashBytes) {
@@ -261,7 +264,7 @@ public class Backend {
         return hexString;
     }
 
-    public static void setBooleanUnsavedChanges(boolean status) {
+    public static void setBooleanUnsavedChanges(final boolean status) {
         unsavedChanges = status;
     } 
 

@@ -31,7 +31,7 @@ public class ChangeMasterPasswordListener implements ActionListener{
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        JPanel infoPanel = new JPanel(new GridLayout(2,2));
+        JPanel infoPanel = new JPanel(new GridLayout(2, 2));
         JLabel oldPasswordLabel = new JLabel("Enter old password: ");
         oldPasswordTextbox = new JTextField(30);
         JLabel newPasswordLabel = new JLabel("Enter new password: ");
@@ -64,19 +64,19 @@ public class ChangeMasterPasswordListener implements ActionListener{
 
     }
 
-    private class ChangePasswordButtonListener implements ActionListener{
-        public void actionPerformed(ActionEvent e) {
-            Backend b = Backend.getInstance();
+    private class ChangePasswordButtonListener implements ActionListener {
+        public void actionPerformed(ActionEvent evt) {
+            Backend backend = Backend.getInstance();
             //if old password matches change to new password
-            if(oldPasswordTextbox.getText().equals(b.getMasterPassword())) {
-                b.setMasterPassword(newPasswordTextbox.getText());
+            if (oldPasswordTextbox.getText().equals(backend.getMasterPassword())) {
+                backend.setMasterPassword(newPasswordTextbox.getText());
                 //initiate save to make sure next run opens datafile without error
                 Backend.saveRecords();
                 //updates token for future logins
                 updateAuthenticationToken(newPasswordTextbox.getText());
                 frame.dispose();
             }
-            else{
+            else {
                 warningLabel.setVisible(true);
             }
         }

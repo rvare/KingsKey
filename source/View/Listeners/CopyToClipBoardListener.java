@@ -26,11 +26,11 @@ public class CopyToClipBoardListener implements ActionListener {
             Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
             clipboard.setContents(selectedString, selectedString);
         }
-        catch(IndexOutOfBoundsException outOfBoundsEx) {
+        catch (IndexOutOfBoundsException outOfBoundsEx) {
             //nothingSelectedErrorMessage();
             ErrorMessageWindow.makeMessage("No item selected. Please select an item.");
         }
-        catch(Exception ex) {
+        catch (Exception ex) {
             ex.printStackTrace();
         }
     } // End of actionPerformed
