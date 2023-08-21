@@ -13,6 +13,7 @@ public class Password {
 
     private static Trie_Node dictionary = new Trie_Node(); 
     //private static HashSet<String> dictionary = new HashSet<>();
+    private static double characterSet = 0;
     
     public static void main(String [] args) throws IOException{
         // Get current size of heap in bytes
@@ -185,15 +186,19 @@ public class Password {
         //check for characteristics
         if(password.matches("(?=.*[a-z]).*")) {  //check for lowercase
             score++;
+            characterSet += 26;
         }
         if(password.matches("(?=.*[A-Z]).*")) {  //check for uppercase
             score++;
+            characterSet += 26;
         }
         if(password.matches("(?=.*[0-9]).*")) {  //check for numbers
             score++;
+            characterSet += 10;
         }
         if(password.matches("(?=.*[!@#$%^&*()]).*")) {  //check for special characters
             score++;
+            characterSet += 10;
         }
 
         switch(score) {
@@ -223,11 +228,14 @@ public class Password {
         //Formula is Entropy = log2(CharacterSet^Length of Password)
         double passwordLength = password.length();
         double base = 2.0;
-        double characterSet = 95.0;
+        //double characterSet = 95.0;
         double numberOfCombinations = (Math.pow(characterSet, passwordLength));
         double entropy = (Math.log(numberOfCombinations) / Math.log(base));
         BigDecimal roundedEntropy = new BigDecimal(Double.toString(entropy));
         roundedEntropy = roundedEntropy.setScale(2, RoundingMode.HALF_UP);
+        
+        //reset characterSet
+        characterSet = 0;
         return roundedEntropy.doubleValue();
     }
 
