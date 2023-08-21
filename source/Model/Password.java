@@ -75,56 +75,56 @@ public class Password {
     public static void loadPasswordCheckingResources() {
         String filepath;
         long start = System.currentTimeMillis();
-        try{
-            filepath = "../source/Dictionaries/passwords.txt";
+        try {
+            filepath = "../Dictionaries/passwords.txt";
             loadDictionary(filepath);
         }
         catch(IOException e){
             System.out.println("Failed to load passwords.txt");
         }
 
-        try{
-            filepath = "../source/Dictionaries/eff_large.txt";
+        try {
+            filepath = "../Dictionaries/eff_large.txt";
             loadDictionary(filepath);
         }
-        catch(IOException e){
+        catch(IOException e) {
             System.out.println("Failed to load eff_large.txt");
         }     
         
-        try{
-            filepath = "../source/Dictionaries/english.txt";
+        try {
+            filepath = "../Dictionaries/english.txt";
             loadDictionary(filepath);
         }
-        catch(IOException e){
+        catch(IOException e) {
             System.out.println("Failed to load english.txt");
         }
 
-        try{
-            filepath = "../source/Dictionaries/female-names.txt";
+        try {
+            filepath = "../Dictionaries/female-names.txt";
             loadDictionary(filepath);
         }
-        catch(IOException e){
+        catch(IOException e) {
             System.out.println("Failed to load female-names.txt");
         }
 
-        try{
-            filepath = "../source/Dictionaries/male-names.txt";
+        try {
+            filepath = "../Dictionaries/male-names.txt";
             loadDictionary(filepath);
         }
-        catch(IOException e){
+        catch(IOException e) {
             System.out.println("Failed to load male-names.txt");
         }
 
-        try{
-            filepath = "../source/Dictionaries/surnames.txt";
+        try {
+            filepath = "../Dictionaries/surnames.txt";
             loadDictionary(filepath);
         }
-        catch(IOException e){
+        catch(IOException e) {
             System.out.println("Failed to load surnames.txt");
         }
         long finish = System.currentTimeMillis();
         long timeElapsed = finish - start; 
-        System.out.println("Loading Resources Time Elapsed: "+ timeElapsed +" ms");
+        //System.out.println("Loading Resources Time Elapsed: "+ timeElapsed +" ms");
     }
     
     private static void loadDictionary(String filepath) throws IOException {
@@ -189,13 +189,13 @@ public class Password {
         StringBuilder result = new StringBuilder("Password Strength: ");
         
         //checking length
-        if(length >= 8 && length <=10) {
+        if(length >= 8 && length <= 10) {
             score += 1;
         }
-        else if(length >=11 && length <=15) {
+        else if(length >= 11 && length <= 15) {
             score += 2;
         }
-        else if(length >=16) {
+        else if(length >= 16) {
             score += 3;
         }
 
