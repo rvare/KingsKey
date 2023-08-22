@@ -66,11 +66,11 @@ public class UI {
         JMenuItem saveRecords = new JMenuItem("Save");
         saveRecords.addActionListener(new SaveListener());
         JMenu editMenu = new JMenu("Edit");
-        JMenuItem preferencesMenu = new JMenuItem("Preferences");
-        preferencesMenu.addActionListener(new PreferenceMenuListener());
+        //JMenuItem preferencesMenu = new JMenuItem("Preferences");
+        //preferencesMenu.addActionListener(new PreferenceMenuListener());
         JMenuItem editRecordItem = new JMenuItem("Edit Record");
         editRecordItem.addActionListener(new EditRecordMenuListener(new Form("EditMode")));
-        JMenuItem changeMasterPassword = new JMenuItem("Change Password");
+        JMenuItem changeMasterPassword = new JMenuItem("Change Master Password");
         changeMasterPassword.addActionListener(new ChangeMasterPasswordListener());
         JMenu helpMenu = new JMenu("Help");
         JMenuItem aboutItem = new JMenuItem("About");
@@ -79,7 +79,7 @@ public class UI {
         fileMenu.add(newRecordItem);
         fileMenu.add(saveRecords);
         menuBar.add(fileMenu);
-        editMenu.add(preferencesMenu);
+        //editMenu.add(preferencesMenu);
         editMenu.add(editRecordItem);
         editMenu.add(changeMasterPassword);
         menuBar.add(editMenu);

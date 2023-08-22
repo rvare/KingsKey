@@ -115,7 +115,7 @@ class SetUpDialog extends JDialog {
             catch (IOException ioEx) {
                 ioEx.printStackTrace();
             }
-            carch (Exception ex) {
+            catch (Exception ex) {
                 ex.printStackTrace();
             }
 
