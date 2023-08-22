@@ -189,35 +189,38 @@ public class Password {
         StringBuilder result = new StringBuilder("Password Strength: ");
         
         //checking length
-        if(length >= 8 && length <= 10) {
+        if (length >= 8 && length <= 10) {
             score += 1;
         }
-        else if(length >= 11 && length <= 15) {
+        else if (length >= 11 && length <= 15) {
             score += 2;
         }
-        else if(length >= 16) {
+        else if (length >= 16) {
             score += 3;
         }
 
         //check for characteristics
-        if(password.matches("(?=.*[a-z]).*")) {  //check for lowercase
+        if (password.matches("(?=.*[a-z]).*")) {  //check for lowercase
             score++;
             characterSet += 26;
         }
-        if(password.matches("(?=.*[A-Z]).*")) {  //check for uppercase
+
+        if (password.matches("(?=.*[A-Z]).*")) {  //check for uppercase
             score++;
             characterSet += 26;
         }
-        if(password.matches("(?=.*[0-9]).*")) {  //check for numbers
-            score++;
-            characterSet += 10;
-        }
-        if(password.matches("(?=.*[!@#$%^&*()]).*")) {  //check for special characters
+
+        if (password.matches("(?=.*[0-9]).*")) {  //check for numbers
             score++;
             characterSet += 10;
         }
 
-        switch(score) {
+        if (password.matches("(?=.*[!@#$%^&*()]).*")) {  //check for special characters
+            score++;
+            characterSet += 10;
+        }
+
+        switch (score) {
             case 0: 
                 result.append("N/A. You left the field blank.");
                 break;
@@ -256,10 +259,10 @@ public class Password {
     }
 
     public static String isCommonPassword(String password) {
-        if(dictionary.search(password)){
+        if (dictionary.search(password)) {
             return "Yes";
         }
-        else{
+        else {
             return "No";
         }
     }

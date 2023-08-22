@@ -35,7 +35,7 @@ import View.UI.UI;
 public class WindowClosingListener extends WindowAdapter {
 
     public void windowClosing(WindowEvent e) {
-        if(Backend.unsavedChangeExists()) {
+        if (Backend.unsavedChangeExists()) {
             JFrame saveChangesConfirmationWindow = new JFrame("Save Changes?");
             saveChangesConfirmationWindow.setSize(250, 100);
             saveChangesConfirmationWindow.setLocationRelativeTo(null);
@@ -57,9 +57,11 @@ public class WindowClosingListener extends WindowAdapter {
                 public void actionPerformed(ActionEvent e) {
                     try {
                         Backend.saveRecords();
-                    } catch (Exception err) {
+                    }
+                    catch (Exception err) {
                         err.printStackTrace();
-                    } finally {// provides better guarentee that this code block will run
+                    }
+                    finally {// provides better guarentee that this code block will run
                         saveChangesConfirmationWindow.dispose();
                         UI.getMainFrame().dispose();
                         System.exit(0);
@@ -83,10 +85,10 @@ public class WindowClosingListener extends WindowAdapter {
             saveChangesConfirmationWindow.getContentPane().add(BorderLayout.SOUTH, buttonPanel);
             saveChangesConfirmationWindow.setVisible(true); 
         }
-        else{
+        else {
             //no changes, standard program close
             UI.getMainFrame().dispose();
             System.exit(0);
         }
-    }
-}
+    } // End of windowClosing
+} // End of WindowClosingListener

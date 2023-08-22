@@ -121,9 +121,12 @@ class PassDialog extends JDialog {
             actualPassword = bufferedReader.readLine();
             bufferedReader.close();
          }
-         catch(IOException ioEx) {
+         catch (IOException ioEx) {
             ioEx.printStackTrace();
             actualPassword = "pass";
+         }
+         catch (Exception ex) {
+            ex.printStackTrace();
          }
     } // End of getActualPassword
 } // End of PassDialog

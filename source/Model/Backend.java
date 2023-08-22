@@ -33,7 +33,7 @@ public class Backend {
     private static String dataFilePath = "../UserDataFile";
     private static Backend instance;
     private static Object[][] data;
-    private static final String[] columnNames = { "Site", "Email", "Username", "password" };
+    private static final String[] columnNames = { "Site", "Email", "Username", "Password" };
     private static String masterPassword;
     private static boolean unsavedChanges = false;
     

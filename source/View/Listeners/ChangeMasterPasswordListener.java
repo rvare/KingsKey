@@ -41,7 +41,7 @@ public class ChangeMasterPasswordListener implements ActionListener{
     private JFrame frame;
     private JLabel warningLabel;
 
-    public void actionPerformed(ActionEvent e){
+    public void actionPerformed(ActionEvent e) {
         frame = new JFrame("Change password");
         frame.setSize(350, 150);
         frame.setLocationRelativeTo(null);
@@ -78,7 +78,7 @@ public class ChangeMasterPasswordListener implements ActionListener{
         frame.getContentPane().add(BorderLayout.SOUTH, buttonPanel);
         frame.setVisible(true);
 
-    }
+    } // End actionPerformed
 
     private class ChangePasswordButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent evt) {
@@ -114,4 +114,4 @@ public class ChangeMasterPasswordListener implements ActionListener{
             ex.printStackTrace();
         }
     }
-}
+} // End of ChangeMasterPasswordListener

@@ -65,6 +65,7 @@ public class DataContainer {
         return this.userPassword;
     }
     
+    // Other methods
     public String toString() { // For testing purposes
         return String.format("%s;%s;%s;%s", websiteName, accountName, userEmail, userPassword);
     }

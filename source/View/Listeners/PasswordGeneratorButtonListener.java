@@ -77,7 +77,7 @@ public class PasswordGeneratorButtonListener implements ActionListener {
         JPanel passwordTestPanel = new JPanel();
         //passwordTestPanel.setLayout(new BoxLayout(passwordTestPanel, BoxLayout.Y_AXIS));
         passwordTestPanel.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
+        GridBagConstraints grid = new GridBagConstraints();
 
         // Panel holds result output label
         JLabel passwordStrengthResults = new JLabel("Password Strength: ?");
@@ -117,12 +117,12 @@ public class PasswordGeneratorButtonListener implements ActionListener {
         passwordTestPanel.setFocusable(true);
         
         // Adding everything to a parent panel
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 0;
-        c.gridy = 0;
-        passwordTestPanel.add(resultLabelHolder, c);
-        c.gridy = 1;
-        passwordTestPanel.add(textBoxAndButtonHolder, c);
+        grid.fill = GridBagConstraints.HORIZONTAL;
+        grid.gridx = 0;
+        grid.gridy = 0;
+        passwordTestPanel.add(resultLabelHolder, grid);
+        grid.gridy = 1;
+        passwordTestPanel.add(textBoxAndButtonHolder, grid);
         //allows textbox to be deselected when clicking this area
         passwordTestPanel.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
